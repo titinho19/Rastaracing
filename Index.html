@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RastaRacing LMU Endurance Cup | Temporada 1 - Propuesta Oficial</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Russo One (Headers), Rajdhani (Telemetry/Numbers), Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@500;600;700;800&family=Russo+One&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Russo One"', 'sans-serif'],
+                        telemetry: ['"Rajdhani"', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        asphalt: '#07070a',
+                        carbon: '#111217',
+                        rastaGreen: '#00ff66',
+                        rastaGold: '#ffcc00',
+                        rastaRed: '#ff1e38',
+                        twitch: '#9146ff',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --rasta-green: #00ff66;
+            --rasta-gold: #ffcc00;
+            --rasta-red: #ff1e38;
+            --twitch-purple: #9146ff;
+        }
+
+        body {
+            background-color: #07070a;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        /* Carbon Fiber & Telemetry Grid Background */
+        .bg-telemetry-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .carbon-pattern {
+            background: radial-gradient(black 15%, transparent 16%) 0 0,
+                        radial-gradient(black 15%, transparent 16%) 8px 8px,
+                        radial-gradient(rgba(255,255,255,.06) 15%, transparent 20%) 0 1px,
+                        radial-gradient(rgba(255,255,255,.06) 15%, transparent 20%) 8px 9px;
+            background-color: #0c0d12;
+            background-size: 16px 16px;
+        }
+
+        /* Rasta Tricolor Gradient Line */
+        .rasta-gradient-bar {
+            background: linear-gradient(90deg, #00ff66 0%, #ffcc00 50%, #ff1e38 100%);
+        }
+
+        .rasta-text-gradient {
+            background: linear-gradient(90deg, #00ff66 0%, #ffcc00 55%, #ff1e38 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-card {
+            background: rgba(17, 18, 23, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 102, 0.4);
+            box-shadow: 0 15px 35px -10px rgba(0, 255, 102, 0.15), 0 0 15px rgba(255, 204, 0, 0.08);
+        }
+
+        /* Skewed Motorsport Shapes */
+        .skew-badge {
+            transform: skewX(-12deg);
+        }
+        .unskew-text {
+            transform: skewX(12deg);
+            display: inline-block;
+        }
+
+        /* Animated Speed Lines */
+        @keyframes speedLine {
+            0% { transform: translateX(-100%) scaleX(0.2); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateX(200%) scaleX(1.5); opacity: 0; }
+        }
+
+        .speed-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--rasta-green), var(--rasta-gold), transparent);
+            animation: speedLine 3.5s infinite linear;
+            pointer-events: none;
+        }
+
+        /* Numberplate WEC Glow */
+        .wec-plate-hypercar {
+            background: linear-gradient(135deg, #c8102e 0%, #7a0517 100%);
+            box-shadow: 0 0 25px rgba(255, 30, 56, 0.45);
+        }
+        .wec-plate-lmgt3 {
+            background: linear-gradient(135deg, #ff8800 0%, #b35900 100%);
+            box-shadow: 0 0 25px rgba(255, 136, 0, 0.45);
+        }
+        .lumirank-led {
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.9), 0 0 24px currentColor;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07070a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262936;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00ff66;
+        }
+
+        /* Pulse live dot */
+        @keyframes pulseGlow {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.4; }
+        }
+        .live-dot {
+            animation: pulseGlow 1.8s infinite;
+        }
+    </style>
+</head>
+<body class="bg-telemetry-grid selection:bg-rastaGreen selection:text-black">
+
+    <!-- Canvas for Celebration Confetti -->
+    <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+    <!-- 1. TOP TELEMETRY & PITCH BAR -->
+    <div class="bg-black/90 border-b border-white/10 text-xs font-telemetry tracking-wider sticky top-0 z-40 backdrop-blur-md">
+        <div class="rasta-gradient-bar h-1 w-full"></div>
+        <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center space-x-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded bg-rastaRed/20 border border-rastaRed text-rastaRed font-bold uppercase">
+                    <span class="w-2 h-2 rounded-full bg-rastaRed mr-1.5 live-dot"></span>
+                    PROPUESTA INTERACTIVA DE CAMPEONATO
+                </span>
+                <span class="hidden md:inline-block text-gray-400">
+                    <i class="fa-solid fa-microchip text-rastaGreen mr-1"></i> TELEMETRÍA LMU SERVER: <strong class="text-white">ONLINE (60Hz)</strong>
+                </span>
+                <span class="hidden lg:inline-block text-gray-400">
+                    | <i class="fa-solid fa-calendar-check text-rastaGold mr-1"></i> FORMATO: <strong class="text-white">10 FINES DE SEMANA</strong>
+                </span>
+            </div>
+
+            <div class="flex items-center space-x-3 ml-auto">
+                <button onclick="togglePitchModal()" class="px-3 py-1 rounded bg-gradient-to-r from-rastaGold/20 to-rastaGreen/20 border border-rastaGold/60 text-rastaGold hover:bg-rastaGold hover:text-black font-bold transition flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Modo Pitch: ¿Por qué hacerlo?</span>
+                </button>
+                <a href="https://www.twitch.tv/rastaracing" target="_blank" rel="noopener noreferrer" class="px-3 py-1 rounded bg-twitch hover:bg-purple-500 text-white font-bold transition flex items-center gap-1.5 shadow-lg shadow-twitch/30">
+                    <i class="fa-brands fa-twitch"></i>
+                    <span>twitch.tv/rastaracing</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVIGATION -->
+    <header class="border-b border-white/5 bg-carbon/60 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-lg bg-gradient-to-br from-rastaGreen via-rastaGold to-rastaRed p-0.5 shadow-lg shadow-rastaGreen/20">
+                    <div class="w-full h-full bg-asphalt rounded-[7px] flex items-center justify-center">
+                        <i class="fa-solid fa-flag-checkered text-xl text-white group-hover:rotate-12 transition"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-display text-xl tracking-wider leading-none flex items-center gap-1">
+                        <span class="text-rastaGreen">RASTA</span><span class="text-rastaGold">RACING</span>
+                        <span class="text-[10px] font-telemetry bg-white/10 px-1.5 py-0.5 rounded text-white ml-1">LMU CUP</span>
+                    </div>
+                    <p class="text-[11px] font-telemetry text-gray-400 tracking-widest uppercase">Le Mans Ultimate Community Series</p>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-7 text-sm font-telemetry font-semibold uppercase tracking-wider text-gray-300">
+                <a href="#categorias" class="hover:text-rastaGreen transition">Categorías LMU</a>
+                <a href="#calendario" class="hover:text-rastaGold transition">Calendario (10 Fechas)</a>
+                <a href="#formato" class="hover:text-white transition">Formato Fin de Semana</a>
+                <a href="#inscripcion" class="hover:text-rastaGreen transition">Registro en Vivo</a>
+                <a href="#parrilla" class="hover:text-rastaGold transition">Parrilla & Ranking</a>
+            </nav>
+
+            <div class="flex items-center gap-2">
+                <a href="#inscripcion" class="skew-badge bg-rastaGreen hover:bg-emerald-400 text-black font-display text-xs sm:text-sm px-4 py-2.5 rounded shadow-lg shadow-rastaGreen/25 transition">
+                    <span class="unskew-text flex items-center gap-1.5">
+                        <i class="fa-solid fa-helmet-safety"></i> INSCRIBIRSE AHORA
+                    </span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section class="relative overflow-hidden py-14 lg:py-20 border-b border-white/10">
+        <!-- Animated Speed Lines & Glow Orbs -->
+        <div class="speed-line w-64 top-1/4 left-0"></div>
+        <div class="speed-line w-96 top-2/3 left-1/4" style="animation-delay: 1.2s;"></div>
+        <div class="speed-line w-80 top-1/2 left-10" style="animation-delay: 2.4s;"></div>
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-rastaGreen/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/3 -right-32 w-96 h-96 bg-rastaRed/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-1/3 w-80 h-80 bg-rastaGold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                <!-- Left Column: Hero Copy -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-telemetry uppercase tracking-widest">
+                        <span class="px-2 py-0.5 rounded-full bg-twitch text-white font-bold">TWITCH LIVE</span>
+                        <span class="text-rastaGold font-bold">TEMPORADA 1 OFICIAL</span>
+                        <span class="text-gray-400">• LE MANS ULTIMATE</span>
+                    </div>
+
+                    <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl uppercase leading-[1.05] tracking-tight">
+                        RASTARACING <br>
+                        <span class="rasta-text-gradient">ENDURANCE CUP</span>
+                    </h1>
+
+                    <p class="text-gray-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+                        ¡Prepárate para competir en la parrilla más intensa de habla hispana en <strong class="text-white">Le Mans Ultimate</strong>! Un campeonato comunitario de <span class="text-rastaGreen font-semibold">10 carreras durante 10 fines de semana</span>, con parrilla multicategoría (Hypercar & LMGT3), comisarios en vivo y retransmisión oficial en el canal de <strong class="text-twitch">RastaRacing</strong>.
+                    </p>
+
+                    <!-- Quick Stats Pills -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        <div class="glass-card p-3 rounded-xl border-l-4 border-l-rastaGreen">
+                            <div class="text-2xl font-display text-white">10</div>
+                            <div class="text-xs font-telemetry text-gray-400 uppercase">Fines de Semana</div>
+                        </div>
+                        <div class="glass-card p-3 rounded-xl border-l-4 border-l-rastaGold">
+                            <div class="text-2xl font-display text-white">2 Clases</div>
+                            <div class="text-xs font-telemetry text-gray-400 uppercase">Hypercar & LMGT3</div>
+                        </div>
+                        <div class="glass-card p-3 rounded-xl border-l-4 border-l-rastaRed">
+                            <div class="text-2xl font-display text-white">38 Slots</div>
+                            <div class="text-xs font-telemetry text-gray-400 uppercase">Parrilla Completa</div>
+                        </div>
+                        <div class="glass-card p-3 rounded-xl border-l-4 border-l-twitch">
+                            <div class="text-2xl font-display text-white">100% Live</div>
+                            <div class="text-xs font-telemetry text-gray-400 uppercase">Caster en Twitch</div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#inscripcion" class="px-7 py-4 rounded-xl bg-gradient-to-r from-rastaGreen to-emerald-400 text-black font-display text-sm sm:text-base tracking-wide shadow-xl shadow-rastaGreen/25 hover:scale-[1.02] transition flex items-center gap-2">
+                            <i class="fa-solid fa-flag-checkered"></i>
+                            RESERVAR MI DORSAL AHORA
+                        </a>
+                        <a href="#calendario" class="px-6 py-4 rounded-xl glass-card hover:border-rastaGold/60 text-white font-telemetry font-bold text-sm sm:text-base tracking-wider uppercase transition flex items-center gap-2">
+                            <i class="fa-regular fa-calendar-days text-rastaGold"></i>
+                            EXPLORAR LAS 10 FECHAS
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Telemetry Card & Countdown -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-2xl p-6 border border-white/15 relative overflow-hidden shadow-2xl">
+                        <div class="rasta-gradient-bar h-1.5 w-full absolute top-0 left-0"></div>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xs font-telemetry uppercase tracking-widest text-rastaGreen block">PRÓXIMO SEMÁFORO EN VERDE</span>
+                                <h3 class="font-display text-xl text-white">RONDA 1: LUSAIL QATAR</h3>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-rastaRed/20 border border-rastaRed/50 text-rastaRed font-telemetry font-bold text-xs flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-rastaRed live-dot"></span> INSCRIPCIONES ABIERTAS
+                            </span>
+                        </div>
+
+                        <!-- Visual SVG Circuit & Car Graphic -->
+                        <div class="relative rounded-xl bg-gradient-to-br from-asphalt via-carbon to-black p-5 border border-white/10 mb-5 overflow-hidden">
+                            <div class="flex justify-between items-start relative z-10">
+                                <div>
+                                    <span class="text-[11px] font-telemetry text-gray-400 uppercase">CIRCUITO INAUGURAL</span>
+                                    <div class="font-display text-lg text-rastaGold">Qatar 1812 km (Sprint 60m)</div>
+                                    <div class="text-xs font-telemetry text-gray-300 mt-1 space-x-3">
+                                        <span><i class="fa-solid fa-moon text-blue-400 mr-1"></i>Nocturna</span>
+                                        <span><i class="fa-solid fa-temperature-half text-rastaGold mr-1"></i>24°C Pista</span>
+                                        <span><i class="fa-solid fa-gas-pump text-rastaGreen mr-1"></i>1 Parada Oblig.</span>
+                                    </div>
+                                </div>
+                                <div class="text-right font-telemetry">
+                                    <div class="text-xs text-gray-400">PLAZAS OCUPADAS</div>
+                                    <div class="text-2xl font-extrabold text-rastaGreen" id="heroSlotsCounter">29 / 38</div>
+                                </div>
+                            </div>
+
+                            <!-- Stylized LMU Prototype Silhouette SVG -->
+                            <svg class="w-full h-24 mt-3 text-rastaGreen/80 drop-shadow-[0_0_12px_rgba(0,255,102,0.3)]" viewBox="0 0 500 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Track Curbs -->
+                                <path d="M10 98 L490 98" stroke="rgba(255,255,255,0.15)" stroke-width="3" stroke-dasharray="20 10"/>
+                                <!-- Hypercar Aerodynamic Silhouette -->
+                                <path d="M55 82 L95 62 L165 55 L235 34 L320 36 L375 56 L445 62 L460 82 L55 82 Z" fill="url(#carGrad)" stroke="#00ff66" stroke-width="2.5"/>
+                                <!-- Shark FinLMU -->
+                                <path d="M315 36 L415 32 L435 58 L370 56 Z" fill="rgba(255,30,56,0.35)" stroke="#ff1e38" stroke-width="2"/>
+                                <!-- Cockpit Canopy -->
+                                <path d="M185 54 L235 37 L295 39 L280 55 Z" fill="rgba(145,70,255,0.4)" stroke="#ffcc00" stroke-width="1.5"/>
+                                <!-- Wheels -->
+                                <circle cx="135" cy="82" r="19" fill="#07070a" stroke="#ffcc00" stroke-width="4"/>
+                                <circle cx="135" cy="82" r="8" fill="#ff1e38"/>
+                                <circle cx="385" cy="82" r="19" fill="#07070a" stroke="#ffcc00" stroke-width="4"/>
+                                <circle cx="385" cy="82" r="8" fill="#ff1e38"/>
+                                <!-- Headlight Laser Beam -->
+                                <polygon points="55,70 5,55 5,85" fill="url(#beamGrad)" opacity="0.7"/>
+                                <defs>
+                                    <linearGradient id="carGrad" x1="55" y1="34" x2="460" y2="82" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#00ff66" stop-opacity="0.25"/>
+                                        <stop offset="50%" stop-color="#ffcc00" stop-opacity="0.15"/>
+                                        <stop offset="100%" stop-color="#ff1e38" stop-opacity="0.3"/>
+                                    </linearGradient>
+                                    <linearGradient id="beamGrad" x1="55" y1="70" x2="5" y2="70" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#00ff66"/>
+                                        <stop offset="100%" stop-color="transparent"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <!-- Live Countdown Clock -->
+                        <div class="grid grid-cols-4 gap-2 text-center mb-5">
+                            <div class="bg-black/60 border border-white/10 rounded-xl p-2.5">
+                                <div id="cd-days" class="font-display text-2xl sm:text-3xl text-white">04</div>
+                                <div class="text-[10px] font-telemetry uppercase text-gray-400">Días</div>
+                            </div>
+                            <div class="bg-black/60 border border-white/10 rounded-xl p-2.5">
+                                <div id="cd-hours" class="font-display text-2xl sm:text-3xl text-rastaGreen">18</div>
+                                <div class="text-[10px] font-telemetry uppercase text-gray-400">Horas</div>
+                            </div>
+                            <div class="bg-black/60 border border-white/10 rounded-xl p-2.5">
+                                <div id="cd-mins" class="font-display text-2xl sm:text-3xl text-rastaGold">42</div>
+                                <div class="text-[10px] font-telemetry uppercase text-gray-400">Minutos</div>
+                            </div>
+                            <div class="bg-black/60 border border-white/10 rounded-xl p-2.5">
+                                <div id="cd-secs" class="font-display text-2xl sm:text-3xl text-rastaRed">19</div>
+                                <div class="text-[10px] font-telemetry uppercase text-gray-400">Segundos</div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar of Grid Capacity -->
+                        <div class="space-y-1.5">
+                            <div class="flex justify-between text-xs font-telemetry">
+                                <span class="text-gray-300">OCUPACIÓN DE PARRILLA (TEMPORADA 1)</span>
+                                <span id="heroCapacityPercent" class="text-rastaGreen font-bold">76% COMPLETADO</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-black rounded-full overflow-hidden p-0.5 border border-white/10">
+                                <div id="heroProgressBar" class="h-full rounded-full rasta-gradient-bar transition-all duration-500" style="width: 76%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SELECTOR DE CATEGORÍAS (HYPERCAR & LMGT3) -->
+    <section id="categorias" class="py-16 border-b border-white/10 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-xs font-telemetry uppercase tracking-widest text-rastaGreen font-bold">
+                        <i class="fa-solid fa-car-Burst mr-1"></i> PARRILLA MULTICLASE OFICIAL WEC
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-4xl uppercase mt-1">
+                        ELIGE TU ARMA EN <span class="text-rastaGold">LE MANS ULTIMATE</span>
+                    </h2>
+                </div>
+
+                <!-- Category Switch Buttons -->
+                <div class="inline-flex p-1.5 rounded-xl bg-carbon border border-white/10 self-start">
+                    <button id="btn-cat-hypercar" onclick="switchCategory('HYPERCAR')" class="px-5 py-2.5 rounded-lg font-display text-xs sm:text-sm transition flex items-center gap-2 bg-rastaRed text-white shadow-lg shadow-rastaRed/30">
+                        <span class="w-2.5 h-2.5 rounded-full bg-white"></span>
+                        HYPERCAR (LMH / LMDh)
+                    </button>
+                    <button id="btn-cat-lmgt3" onclick="switchCategory('LMGT3')" class="px-5 py-2.5 rounded-lg font-display text-xs sm:text-sm transition flex items-center gap-2 text-gray-400 hover:text-white">
+                        <span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+                        LMGT3 PRO-AM
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Info Banner -->
+            <div id="categoryBanner" class="glass-card rounded-2xl p-5 mb-8 border-l-4 border-l-rastaRed flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div id="catBadgeBox" class="px-4 py-2 rounded-lg wec-plate-hypercar font-display text-white text-lg tracking-wider">
+                        HYPERCAR
+                    </div>
+                    <div>
+                        <h3 id="catTitleDesc" class="font-display text-lg text-white">Prototipos de Máxima Tecnología Híbrida (680 CV / 1030 kg)</h3>
+                        <p id="catSubDesc" class="text-xs sm:text-sm text-gray-400">Gestión de energía virtual, aerodinámica extrema y tráfico constante doblando LMGT3. Recomendado para pilotos experimentados.</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-6 font-telemetry">
+                    <div>
+                        <div class="text-xs text-gray-400 uppercase">BOP SERVIDOR</div>
+                        <div class="text-sm font-bold text-rastaGreen"><i class="fa-solid fa-scale-balanced mr-1"></i>WEC Oficial Rasta Bop v1.2</div>
+                    </div>
+                    <div>
+                        <div class="text-xs text-gray-400 uppercase">SLOTS DISPONIBLES</div>
+                        <div id="catSlotsBadge" class="text-sm font-bold text-rastaGold">5 / 18 Libres</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Car Grid -->
+            <div id="carsContainer" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CALENDARIO OFICIAL: 10 FINES DE SEMANA -->
+    <section id="calendario" class="py-16 border-b border-white/10 bg-carbon/40">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-xs font-telemetry uppercase tracking-widest text-rastaGold font-bold">
+                        <i class="fa-solid fa-route mr-1"></i> TOUR MUNDIAL DE RESISTENCIA
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-4xl uppercase mt-1">
+                        10 FINES DE SEMANA • <span class="text-rastaGreen">10 CIRCUITOS MÍTICOS</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm mt-1">Haz clic en cualquier fecha para ver horarios de Qualy/Carrera, meteorología simulada o inscribirte como Wildcard.</p>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap gap-2 font-telemetry text-xs font-bold uppercase">
+                    <button onclick="filterCalendar('ALL')" id="cal-filter-ALL" class="px-4 py-2 rounded-lg bg-rastaGreen text-black transition">Todas (10)</button>
+                    <button onclick="filterCalendar('SPRINT')" id="cal-filter-SPRINT" class="px-4 py-2 rounded-lg glass-card text-gray-300 hover:text-white transition">Sprint 45-60m (7)</button>
+                    <button onclick="filterCalendar('ENDURANCE')" id="cal-filter-ENDURANCE" class="px-4 py-2 rounded-lg glass-card text-rastaGold border border-rastaGold/40 hover:bg-rastaGold/10 transition">★ Especiales Pts Dobles (3)</button>
+                </div>
+            </div>
+
+            <!-- 10 Races Grid -->
+            <div id="calendarGrid" class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. FORMATO DEL FIN DE SEMANA & REGLAMENTO RÁPIDO -->
+    <section id="formato" class="py-16 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-telemetry uppercase tracking-widest text-twitch font-bold">SHOW EN DIRECTO + COMPETICIÓN PURA</span>
+                <h2 class="font-display text-3xl sm:text-4xl uppercase mt-1">¿CÓMO FUNCIONA CADA FIN DE SEMANA?</h2>
+                <p class="text-gray-400 text-sm mt-2">Diseñado para que cualquier miembro de la comunidad de RastaRacing pueda entrenar entre semana y vivir una experiencia de televisión cada sábado/domingo.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6 relative">
+                <!-- Step 1 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 relative border-t-4 border-t-rastaGreen">
+                    <div class="w-10 h-10 rounded-lg bg-rastaGreen/20 text-rastaGreen flex items-center justify-center font-display text-lg mb-4">01</div>
+                    <div class="text-xs font-telemetry text-rastaGreen uppercase font-bold">LUNES A VIERNES (24/7)</div>
+                    <h3 class="font-display text-lg text-white mt-1 mb-2">Servidor Práctica + Hotlaps</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Servidor dedicado abierto toda la semana con goma real progresiva. Tabla de tiempos automática en Discord para comparar sectores con Rasta.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 relative border-t-4 border-t-rastaGold">
+                    <div class="w-10 h-10 rounded-lg bg-rastaGold/20 text-rastaGold flex items-center justify-center font-display text-lg mb-4">02</div>
+                    <div class="text-xs font-telemetry text-rastaGold uppercase font-bold">SÁBADO • 18:30 CET</div>
+                    <h3 class="font-display text-lg text-white mt-1 mb-2">Briefing Discord & Previa</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Reunión rápida de 10 minutos en el Discord de RastaRacing: recordatorio de límites de pista, entrada a boxes y apertura del directo en Twitch.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 relative border-t-4 border-t-rastaRed">
+                    <div class="w-10 h-10 rounded-lg bg-rastaRed/20 text-rastaRed flex items-center justify-center font-display text-lg mb-4">03</div>
+                    <div class="text-xs font-telemetry text-rastaRed uppercase font-bold">SÁBADO • 19:00 CET</div>
+                    <h3 class="font-display text-lg text-white mt-1 mb-2">Qualy Dividida + Carrera</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">10 min Qualy LMGT3 + 10 min Qualy Hypercar. Seguido de Carrera de 60 minutos con cambio de neumáticos o repostaje estratégico obligatorio.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="glass-card glass-card-hover rounded-2xl p-6 relative border-t-4 border-t-twitch">
+                    <div class="w-10 h-10 rounded-lg bg-twitch/20 text-twitch flex items-center justify-center font-display text-lg mb-4">04</div>
+                    <div class="text-xs font-telemetry text-twitch uppercase font-bold">SÁBADO • 20:30 CET</div>
+                    <h3 class="font-display text-lg text-white mt-1 mb-2">Podio en Twitch & Clips</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Entrevistas en directo con el Top 3 de cada categoría en el stream de RastaRacing, revisión de las mejores batallas y votación al "Piloto del Día".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SISTEMA DE REGISTRO INTERACTIVO CON PREVIEW WEC EN TIEMPO REAL -->
+    <section id="inscripcion" class="py-16 border-b border-white/10 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- Left Column: Interactive Registration Form -->
+                <div class="lg:col-span-7 glass-card rounded-2xl p-6 sm:p-8 border border-white/15">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <span class="text-xs font-telemetry uppercase tracking-widest text-rastaGreen font-bold">SIMULADOR DE INSCRIPCIÓN EN VIVO</span>
+                            <h2 class="font-display text-2xl sm:text-3xl uppercase mt-1">INSCRIBE TU COCHE A LA PARRILLA</h2>
+                        </div>
+                        <span class="text-xs font-telemetry bg-white/10 px-3 py-1 rounded-full text-gray-300">Demo Interactiva</span>
+                    </div>
+
+                    <form id="registrationForm" onsubmit="handleDriverRegistration(event)" class="space-y-5">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-telemetry uppercase text-gray-300 mb-1.5">Nombre / Nick de Piloto *</label>
+                                <input type="text" id="regName" required maxlength="22" placeholder="Ej: Rasta_Fittipaldi" oninput="updateLivePlate()"
+                                    class="w-full bg-black/70 border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rastaGreen transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-telemetry uppercase text-gray-300 mb-1.5">Usuario de Twitch / Discord *</label>
+                                <div class="relative">
+                                    <i class="fa-brands fa-twitch absolute left-3.5 top-3.5 text-twitch"></i>
+                                    <input type="text" id="regTwitch" required maxlength="25" placeholder="@tu_usuario_twitch" oninput="updateLivePlate()"
+                                        class="w-full bg-black/70 border border-white/15 rounded-xl pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-twitch transition">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-telemetry uppercase text-gray-300 mb-1.5">Dorsal (1 - 999) *</label>
+                                <input type="number" id="regNumber" required min="1" max="999" value="77" oninput="updateLivePlate()"
+                                    class="w-full bg-black/70 border border-white/15 rounded-xl px-4 py-3 font-display text-lg text-rastaGold focus:outline-none focus:border-rastaGold transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-telemetry uppercase text-gray-300 mb-1.5">Categoría Oficial *</label>
+                                <select id="regClass" onchange="populateCarDropdown(); updateLivePlate();"
+                                    class="w-full bg-black/70 border border-white/15 rounded-xl px-4 py-3 text-sm font-bold text-white focus:outline-none focus:border-rastaRed transition">
+                                    <option value="HYPERCAR">HYPERCAR (Prototipos)</option>
+                                    <option value="LMGT3">LMGT3 (Gran Turismo)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-telemetry uppercase text-gray-300 mb-1.5">Nivel Safety Rating</label>
+                                <select id="regLicense" onchange="updateLivePlate()"
+                                    class="w-full bg-black/70 border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rastaGreen transition">
+                                    <option value="PLATINO (S1)">Platino / Alien</option>
+                                    <option value="ORO (A+)" selected>Oro / Competitivo</option>
+                                    <option value="PLATA (B)">Plata / Intermedio</option>
+                                    <option value="BRONCE (Rookie)">Bronce / Rookie Limpio</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-telemetry uppercase text-gray-300 mb-1.5">Montura Oficial LMU *</label>
+                                <select id="regCar" onchange="updateLivePlate()"
+                                    class="w-full bg-black/70 border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rastaGreen transition">
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-telemetry uppercase text-gray-300 mb-1.5">Modalidad de Participación *</label>
+                                <select id="regMode" onchange="updateLivePlate()"
+                                    class="w-full bg-black/70 border border-white/15 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-rastaGold transition">
+                                    <option value="Temporada Completa (10 Fechas)">Temporada Completa (10 Fines de Semana)</option>
+                                    <option value="Wildcard - Ronda 1 (Lusail)">Wildcard: Ronda 1 - Lusail (Qatar)</option>
+                                    <option value="Wildcard - Ronda 3 (Spa)">Wildcard: Ronda 3 - Spa-Francorchamps</option>
+                                    <option value="Wildcard - Ronda 4 (Le Mans 2.4h)">Wildcard: Ronda 4 - 2.4h Le Mans</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-3 border-t border-white/10">
+                            <label class="flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
+                                <input type="checkbox" required checked class="rounded accent-rastaGreen w-4 h-4">
+                                <span>Acepto el código de conducta limpia y estar en el Discord de <strong>RastaRacing</strong>.</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-rastaGreen via-rastaGold to-rastaRed text-black font-display text-base uppercase tracking-wider shadow-xl hover:brightness-110 active:scale-[0.99] transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bolt"></i>
+                            CONFIRMAR INSCRIPCIÓN EN VIVO Y GENERAR LICENCIA
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Right Column: Live WEC Car Numberplate & Broadcast Telemetry Card Preview -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="glass-card rounded-2xl p-6 border border-white/15 relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-telemetry uppercase tracking-widest text-rastaGold">
+                                <i class="fa-solid fa-eye mr-1"></i> PREVIEW EN TIEMPO REAL (HUD STREAM TWITCH)
+                            </span>
+                            <span class="text-[11px] font-telemetry text-rastaGreen">● LIVE RENDER</span>
+                        </div>
+
+                        <!-- WEC Official Door Numberplate Simulation -->
+                        <div class="carbon-pattern rounded-2xl p-6 border-2 border-white/20 shadow-2xl relative overflow-hidden">
+                            <!-- Top WEC / Rasta Header Strip -->
+                            <div class="flex items-center justify-between border-b border-white/20 pb-3 mb-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-display text-xs tracking-wider text-rastaGreen">RASTARACING</span>
+                                    <span class="text-[10px] font-telemetry bg-white text-black font-extrabold px-1.5 py-0.5 rounded">WEC LMU</span>
+                                </div>
+                                <span id="previewLicenseBadge" class="text-[11px] font-telemetry font-bold px-2 py-0.5 rounded bg-rastaGold/20 text-rastaGold border border-rastaGold/40">
+                                    ORO (A+)
+                                </span>
+                            </div>
+
+                            <div class="flex items-center justify-between gap-4">
+                                <!-- Glowing Number Box -->
+                                <div id="previewPlateBox" class="wec-plate-hypercar rounded-xl px-5 py-3 min-w-[130px] text-center border-2 border-white/80">
+                                    <div id="previewClassLabel" class="text-[10px] font-display tracking-widest text-white uppercase">HYPERCAR</div>
+                                    <div id="previewNumber" class="font-display text-5xl text-white lumirank-led leading-none mt-1">#77</div>
+                                </div>
+
+                                <!-- Driver & Car Details -->
+                                <div class="flex-1 text-right">
+                                    <div class="text-[11px] font-telemetry uppercase text-gray-400">PILOTO OFICIAL</div>
+                                    <div id="previewDriverName" class="font-display text-xl text-white truncate">RASTA_FITTIPALDI</div>
+                                    <div id="previewTwitch" class="text-xs font-telemetry text-twitch font-bold truncate">
+                                        <i class="fa-brands fa-twitch mr-1"></i>@tu_usuario_twitch
+                                    </div>
+                                    <div id="previewCarName" class="mt-2 inline-block px-2.5 py-1 rounded bg-white/10 text-xs font-telemetry font-bold text-rastaGreen">
+                                        Ferrari 499P LMH
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Telemetry Bar -->
+                            <div class="mt-5 pt-3 border-t border-white/10 flex items-center justify-between text-[11px] font-telemetry text-gray-400">
+                                <span id="previewMode">Temporada Completa (10 Fechas)</span>
+                                <span class="text-rastaGreen font-bold">TRANSPONDER OK</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-gray-400 mt-4 leading-relaxed">
+                            <i class="fa-solid fa-circle-info text-rastaGold mr-1"></i>
+                            <strong>Nota para el Streamer:</strong> Al pulsar "Confirmar Inscripción", el piloto se añade automáticamente a la tabla inferior con efectos de celebración para demostrar cómo se llenará la parrilla en directo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. PARRILLA DE INSCRITOS EN VIVO & CLASIFICACIÓN -->
+    <section id="parrilla" class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-telemetry uppercase tracking-widest text-rastaGreen font-bold">
+                        <i class="fa-solid fa-list-ol mr-1"></i> BASE DE DATOS EN TIEMPO REAL
+                    </span>
+                    <h2 class="font-display text-3xl sm:text-4xl uppercase mt-1">
+                        PARRILLA DE INSCRITOS & <span class="text-rastaGold">CLASIFICACIÓN</span>
+                    </h2>
+                </div>
+
+                <!-- Standings Tabs -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="switchStandingsTab('ENTRY')" id="tab-ENTRY" class="px-4 py-2.5 rounded-xl font-display text-xs uppercase bg-rastaGreen text-black transition">
+                        Parrilla Inscritos (<span id="entryCountBadge">10</span>)
+                    </button>
+                    <button onclick="switchStandingsTab('HYPERCAR')" id="tab-HYPERCAR" class="px-4 py-2.5 rounded-xl font-display text-xs uppercase glass-card text-gray-300 hover:text-white transition">
+                        Pts Hypercar
+                    </button>
+                    <button onclick="switchStandingsTab('LMGT3')" id="tab-LMGT3" class="px-4 py-2.5 rounded-xl font-display text-xs uppercase glass-card text-gray-300 hover:text-white transition">
+                        Pts LMGT3
+                    </button>
+                </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="glass-card rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/10 bg-black/60 font-telemetry text-xs uppercase text-gray-400 tracking-wider">
+                                <th class="py-3.5 px-4">Pos / Estado</th>
+                                <th class="py-3.5 px-4">Dorsal</th>
+                                <th class="py-3.5 px-4">Piloto (Twitch / Discord)</th>
+                                <th class="py-3.5 px-4">Categoría</th>
+                                <th class="py-3.5 px-4">Coche Oficial LMU</th>
+                                <th class="py-3.5 px-4">Licencia SR</th>
+                                <th class="py-3.5 px-4 text-right">Modalidad / Puntos</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standingsTableBody" class="divide-y divide-white/5 text-sm font-telemetry">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-black py-12">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg rasta-gradient-bar p-0.5">
+                    <div class="w-full h-full bg-black rounded-[6px] flex items-center justify-center">
+                        <i class="fa-solid fa-flag-checkered text-white"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-display text-sm tracking-wider text-white">RASTARACING LMU ENDURANCE CUP</div>
+                    <div class="text-xs text-gray-500">Prototipo Visual de Campeonato Comunitario • 10 Fines de Semana</div>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="https://www.twitch.tv/rastaracing" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-lg bg-twitch/20 border border-twitch text-twitch hover:bg-twitch hover:text-white font-telemetry font-bold text-xs uppercase transition">
+                    <i class="fa-brands fa-twitch mr-1"></i> Canal Oficial RastaRacing
+                </a>
+                <button onclick="togglePitchModal()" class="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 font-telemetry font-bold text-xs uppercase transition">
+                    Ver Argumentario de Venta (Pitch)
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: DETALLE DE CARRERA (CALENDARIO 10 FECHAS) -->
+    <div id="raceModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-xl w-full p-6 sm:p-8 border border-rastaGold/40 relative shadow-2xl">
+            <button onclick="closeRaceModal()" class="absolute top-4 right-4 w-9 h-9 rounded-lg bg-white/10 hover:bg-rastaRed text-white transition flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="modalRaceRound" class="text-xs font-telemetry uppercase tracking-widest text-rastaGreen font-bold">RONDA 1 DE 10</div>
+            <h3 id="modalRaceTitle" class="font-display text-2xl sm:text-3xl text-white mt-1">LUSAIL INTERNATIONAL CIRCUIT</h3>
+            <p id="modalRaceSubtitle" class="text-sm text-rastaGold font-telemetry font-semibold mb-4">Qatar 1812km • Sprint Nocturno</p>
+
+            <div class="grid grid-cols-3 gap-3 mb-6 font-telemetry">
+                <div class="bg-black/60 p-3 rounded-xl border border-white/10">
+                    <div class="text-[10px] text-gray-400 uppercase">DURACIÓN</div>
+                    <div id="modalRaceDuration" class="text-base font-bold text-white mt-0.5">60 Minutos</div>
+                </div>
+                <div class="bg-black/60 p-3 rounded-xl border border-white/10">
+                    <div class="text-[10px] text-gray-400 uppercase">CLIMA SIMULADO</div>
+                    <div id="modalRaceWeather" class="text-base font-bold text-rastaGreen mt-0.5">Seco Nocturno</div>
+                </div>
+                <div class="bg-black/60 p-3 rounded-xl border border-white/10">
+                    <div class="text-[10px] text-gray-400 uppercase">PUNTUACIÓN</div>
+                    <div id="modalRacePoints" class="text-base font-bold text-rastaGold mt-0.5">Estándar (x1)</div>
+                </div>
+            </div>
+
+            <div class="space-y-2.5 text-xs font-telemetry bg-black/40 p-4 rounded-xl border border-white/10 mb-6">
+                <div class="font-bold text-white uppercase mb-1"><i class="fa-regular fa-clock text-rastaGreen mr-1"></i> Horario Oficial del Fin de Semana:</div>
+                <div class="flex justify-between text-gray-300"><span>• Viernes 20:00 CET:</span> <span class="text-white font-semibold">Entrenamientos Libres Oficiales (90 min)</span></div>
+                <div class="flex justify-between text-gray-300"><span>• Sábado 18:45 CET:</span> <span class="text-white font-semibold">Briefing Obligatorio en Discord</span></div>
+                <div class="flex justify-between text-gray-300"><span>• Sábado 19:00 CET:</span> <span class="text-white font-semibold">Clasificación Hypercar & LMGT3</span></div>
+                <div class="flex justify-between text-gray-300"><span>• Sábado 19:30 CET:</span> <span class="text-rastaGreen font-bold">Carrera en Directo en Twitch.tv/rastaracing</span></div>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+                <button onclick="selectRaceForRegistration()" class="flex-1 py-3.5 rounded-xl bg-rastaGreen hover:bg-emerald-400 text-black font-display text-xs sm:text-sm uppercase transition">
+                    <i class="fa-solid fa-pen-to-square mr-1"></i> Inscribirme a esta Fecha / Temporada
+                </button>
+                <button onclick="closeRaceModal()" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-telemetry font-bold text-xs uppercase transition">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: MODO PITCH / POR QUÉ ESTE CAMPEONATO FUNCIONA PARA RASTARACING -->
+    <div id="pitchModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="glass-card rounded-2xl max-w-2xl w-full p-6 sm:p-8 border border-rastaGreen/50 relative shadow-2xl max-h-[90vh] overflow-y-auto">
+            <button onclick="togglePitchModal()" class="absolute top-4 right-4 w-9 h-9 rounded-lg bg-white/10 hover:bg-rastaRed text-white transition flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <span class="px-3 py-1 rounded bg-rastaGreen/20 text-rastaGreen font-telemetry font-bold text-xs uppercase">ARGUMENTARIO PARA RASTARACING</span>
+            <h3 class="font-display text-2xl sm:text-3xl text-white mt-2">¿Por qué montar la RastaRacing LMU Cup?</h3>
+            <p class="text-sm text-gray-300 mt-2">
+                Esta propuesta está pensada para convertir los directos de <strong>Le Mans Ultimate</strong> en un evento fijo semanal que fidelice a la comunidad durante <strong>10 fines de semana seguidos</strong>:
+            </p>
+
+            <div class="grid sm:grid-cols-2 gap-4 my-6">
+                <div class="bg-black/60 p-4 rounded-xl border border-white/10">
+                    <div class="text-rastaGreen font-display text-base mb-1"><i class="fa-brands fa-twitch mr-1"></i> Retención de Viewers y Subs</div>
+                    <p class="text-xs text-gray-400 leading-relaxed">10 sábados/domingos con contenido garantizado. Los pilotos inscritos invitan a sus amigos a ver la carrera en el stream, subiendo la media de espectadores.</p>
+                </div>
+                <div class="bg-black/60 p-4 rounded-xl border border-white/10">
+                    <div class="text-rastaGold font-display text-base mb-1"><i class="fa-brands fa-discord mr-1"></i> Comunidad Activa 24/7</div>
+                    <p class="text-xs text-gray-400 leading-relaxed">De lunes a viernes la gente habla de setups, tiempos por vuelta, clips e incidentes en el Discord del canal esperando el fin de semana.</p>
+                </div>
+                <div class="bg-black/60 p-4 rounded-xl border border-white/10">
+                    <div class="text-rastaRed font-display text-base mb-1"><i class="fa-solid fa-trophy mr-1"></i> Cero Estrés Técnico</div>
+                    <p class="text-xs text-gray-400 leading-relaxed">Con esta web como portada, el registro de dorsales, elección de Hypercar/LMGT3 y tabla de puntos queda centralizado y súper profesional.</p>
+                </div>
+                <div class="bg-black/60 p-4 rounded-xl border border-white/10">
+                    <div class="text-twitch font-display text-base mb-1"><i class="fa-solid fa-video mr-1"></i> Contenido para Shorts/TikTok</div>
+                    <p class="text-xs text-gray-400 leading-relaxed">Cada carrera de 38 coches genera salidas brutales, adelantamientos al límite y entrevistas post-carrera listas para subir a redes.</p>
+                </div>
+            </div>
+
+            <button onclick="togglePitchModal()" class="w-full py-3.5 rounded-xl rasta-gradient-bar text-black font-display text-sm uppercase tracking-wider">
+                ¡ENTENDIDO, VOLVER A LA DEMO DEL CAMPEONATO!
+            </button>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toastAlert" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-card border-l-4 border-l-rastaGreen px-5 py-4 rounded-xl shadow-2xl flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-2xl text-rastaGreen"></i>
+            <div>
+                <div id="toastTitle" class="font-display text-sm text-white">¡INSCRIPCIÓN REGISTRADA EN LA PARRILLA!</div>
+                <div id="toastMsg" class="text-xs font-telemetry text-gray-300">Tu dorsal ya aparece en la lista oficial de abajo.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. DATA: LMU OFFICIAL CARS BY CATEGORY
+        // ==========================================
+        const lmuCars = {
+            HYPERCAR: [
+                { name: "Ferrari 499P", brand: "Ferrari AF Corse", power: "680 CV AWD Hybrid", topSpeed: "343 km/h", slots: "2/4 Libres", color: "#ff1e38", tag: "Favorito Comunidad" },
+                { name: "Porsche 963", brand: "Porsche Penske", power: "680 CV Twin-Turbo V8", topSpeed: "340 km/h", slots: "1/4 Libres", color: "#ffcc00", tag: "Muy Equilibrado" },
+                { name: "Toyota GR010 Hybrid", brand: "Toyota Gazoo Racing", power: "680 CV V6 Bi-Turbo", topSpeed: "341 km/h", slots: "2/3 Libres", color: "#ffffff", tag: "Rey del Desgaste" },
+                { name: "Cadillac V-Series.R", brand: "Cadillac Racing", power: "680 CV V8 5.5L N/A", topSpeed: "339 km/h", slots: "1/3 Libres", color: "#3b82f6", tag: "Sonido Brutal V8" },
+                { name: "Peugeot 9X8 2024", brand: "Peugeot TotalEnergies", power: "680 CV Aero Evo", topSpeed: "340 km/h", slots: "2/2 Libres", color: "#a3e635", tag: "Nuevo Alerón 2024" },
+                { name: "BMW M Hybrid V8", brand: "BMW M Team WRT", power: "680 CV P66/3 V8", topSpeed: "342 km/h", slots: "1/2 Libres", color: "#60a5fa", tag: "Rápido en Recta" }
+            ],
+            LMGT3: [
+                { name: "Ferrari 296 GT3", brand: "Vista AF Corse", power: "545 CV V6 Turbo", topSpeed: "292 km/h", slots: "1/4 Libres", color: "#ff1e38", tag: "Paso por Curva" },
+                { name: "Porsche 911 GT3 R (992)", brand: "Manthey PureRxcing", power: "550 CV Flat-6 4.2L", topSpeed: "290 km/h", slots: "1/4 Libres", color: "#00ff66", tag: "Tracción Total" },
+                { name: "BMW M4 GT3", brand: "Team WRT GT3", power: "540 CV 6 Cil. Línea", topSpeed: "293 km/h", slots: "2/4 Libres", color: "#38bdf8", tag: "Ideal para Empezar" },
+                { name: "Corvette Z06 GT3.R", brand: "TF Sport Corvette", power: "545 CV V8 Flat-Plane", topSpeed: "291 km/h", slots: "2/3 Libres", color: "#ffcc00", tag: "Frenada Estable" },
+                { name: "McLaren 720S GT3 Evo", brand: "United Autosports", power: "540 CV V8 Twin-Turbo", topSpeed: "294 km/h", slots: "2/3 Libres", color: "#f97316", tag: "Ágil en Rápidas" },
+                { name: "Aston Martin Vantage AMR", brand: "Heart of Racing", power: "535 CV V8 4.0L", topSpeed: "291 km/h", slots: "1/2 Libres", color: "#10b981", tag: "Coche Escuela" }
+            ]
+        };
+
+        // ==========================================
+        // 2. DATA: 10 WEEKEND CALENDAR ROUNDS
+        // ==========================================
+        const calendarRounds = [
+            { round: 1, name: "Lusail (Qatar)", subtitle: "Qatar 1812km • Sprint Nocturno", date: "Fin de Semana 1", duration: "60 Minutos", type: "SPRINT", weather: "Nocturno Seco", points: "x1 Estándar", icon: "fa-moon", highlight: "Apertura de Temporada" },
+            { round: 2, name: "Imola (Italia)", subtitle: "6 Hours of Imola • Clásico Europeo", date: "Fin de Semana 2", duration: "45 Minutos", type: "SPRINT", weather: "Soleado 22°C", points: "x1 Estándar", icon: "fa-sun", highlight: "Pianos Agresivos" },
+            { round: 3, name: "Spa-Francorchamps", subtitle: "Bélgica • Ardenas & Eau Rouge", date: "Fin de Semana 3", duration: "60 Minutos", type: "SPRINT", weather: "Lluvia Variable", points: "x1 Estándar", icon: "fa-cloud-showers-heavy", highlight: "Radar Meteorológico" },
+            { round: 4, name: "2.4h Le Mans", subtitle: "Circuit de la Sarthe • Evento Reina", date: "Fin de Semana 4", duration: "144 Minutos (2.4h)", type: "ENDURANCE", weather: "Día a Noche (x10)", points: "★ PUNTOS DOBLES", icon: "fa-crown", highlight: "Joyas de la Corona" },
+            { round: 5, name: "Interlagos (Brasil)", subtitle: "São Paulo • Ritmo Sudamericano", date: "Fin de Semana 5", duration: "45 Minutos", type: "SPRINT", weather: "Nublado Cálido", points: "x1 Estándar", icon: "fa-cloud-sun", highlight: "Tráfico Intenso" },
+            { round: 6, name: "COTA (Austin)", subtitle: "Lone Star Le Mans • Texas", date: "Fin de Semana 6", duration: "60 Minutos", type: "SPRINT", weather: "Atardecer 29°C", points: "x1 Estándar", icon: "fa-sun", highlight: "Sector 1 Técnico" },
+            { round: 7, name: "Fuji Speedway", subtitle: "Japón • Bajo el Monte Fuji", date: "Fin de Semana 7", duration: "60 Minutos", type: "SPRINT", weather: "Amenaza Lluvia", points: "x1 Estándar", icon: "fa-cloud-rain", highlight: "Recta de 1.5 km" },
+            { round: 8, name: "Bahrain Int. Circuit", subtitle: "8h of Bahrain • Desierto", date: "Fin de Semana 8", duration: "90 Minutos", type: "ENDURANCE", weather: "Atardecer a Noche", points: "★ PUNTOS x1.5", icon: "fa-star", highlight: "Alto Desgaste Goma" },
+            { round: 9, name: "Monza (Italia)", subtitle: "El Templo de la Velocidad", date: "Fin de Semana 9", duration: "45 Minutos", type: "SPRINT", weather: "Despejado", points: "x1 Estándar", icon: "fa-gauge-high", highlight: "Sin Alerón / Rebufos" },
+            { round: 10, name: "Sebring (EE.UU.)", subtitle: "Super Sebring • La Gran Final", date: "Fin de Semana 10", duration: "120 Minutos (2h)", type: "ENDURANCE", weather: "Anochecer Épico", points: "★ PUNTOS DOBLES", icon: "fa-trophy", highlight: "Final de Campeonato" }
+        ];
+
+        // ==========================================
+        // 3. DATA: INITIAL COMMUNITY DRIVERS
+        // ==========================================
+        let registeredDrivers = [
+            { number: 1, name: "RastaRacing (Host VIP)", twitch: "@rastaracing", category: "HYPERCAR", car: "Ferrari 499P", license: "PLATINO (S1)", mode: "Temporada Completa (10 Fechas)", points: 54 },
+            { number: 50, name: "Molina_LMU", twitch: "@molina_sim", category: "HYPERCAR", car: "Porsche 963", license: "PLATINO (S1)", mode: "Temporada Completa (10 Fechas)", points: 48 },
+            { number: 8, name: "Alex_V8Hybrid", twitch: "@alexv8_tw", category: "HYPERCAR", car: "Toyota GR010 Hybrid", license: "ORO (A+)", mode: "Temporada Completa (10 Fechas)", points: 41 },
+            { number: 93, name: "DaniSarthe_ESP", twitch: "@danisarthe", category: "HYPERCAR", car: "Peugeot 9X8 2024", license: "ORO (A+)", mode: "Temporada Completa (10 Fechas)", points: 35 },
+            { number: 2, name: "Kiko_Cadillac", twitch: "@kikoracing", category: "HYPERCAR", car: "Cadillac V-Series.R", license: "PLATA (B)", mode: "Temporada Completa (10 Fechas)", points: 29 },
+            { number: 92, name: "NachoGT3_Pro", twitch: "@nachogt3", category: "LMGT3", car: "Porsche 911 GT3 R (992)", license: "PLATINO (S1)", mode: "Temporada Completa (10 Fechas)", points: 52 },
+            { number: 46, name: "Valen_WRT", twitch: "@valen_bmw", category: "LMGT3", car: "BMW M4 GT3", license: "ORO (A+)", mode: "Temporada Completa (10 Fechas)", points: 45 },
+            { number: 54, name: "Carlos_Maranello", twitch: "@carlos_296", category: "LMGT3", car: "Ferrari 296 GT3", license: "ORO (A+)", mode: "Temporada Completa (10 Fechas)", points: 39 },
+            { number: 81, name: "Txema_Corvette", twitch: "@txemaracing", category: "LMGT3", car: "Corvette Z06 GT3.R", license: "PLATA (B)", mode: "Temporada Completa (10 Fechas)", points: 30 },
+            { number: 27, name: "Gonza_McLaren", twitch: "@gonza_sim", category: "LMGT3", car: "McLaren 720S GT3 Evo", license: "BRONCE (Rookie)", mode: "Wildcard - Ronda 1 (Lusail)", points: 22 }
+        ];
+
+        let currentStandingsTab = 'ENTRY';
+        let selectedModalRound = null;
+
+        // ==========================================
+        // 4. RENDER CATEGORY SHOWCASE
+        // ==========================================
+        function switchCategory(cat) {
+            const btnHyper = document.getElementById('btn-cat-hypercar');
+            const btnGt3 = document.getElementById('btn-cat-lmgt3');
+            const banner = document.getElementById('categoryBanner');
+            const badgeBox = document.getElementById('catBadgeBox');
+            const titleDesc = document.getElementById('catTitleDesc');
+            const subDesc = document.getElementById('catSubDesc');
+            const slotsBadge = document.getElementById('catSlotsBadge');
+
+            if (cat === 'HYPERCAR') {
+                btnHyper.className = "px-5 py-2.5 rounded-lg font-display text-xs sm:text-sm transition flex items-center gap-2 bg-rastaRed text-white shadow-lg shadow-rastaRed/30";
+                btnGt3.className = "px-5 py-2.5 rounded-lg font-display text-xs sm:text-sm transition flex items-center gap-2 text-gray-400 hover:text-white";
+                banner.style.borderLeftColor = "#ff1e38";
+                badgeBox.className = "px-4 py-2 rounded-lg wec-plate-hypercar font-display text-white text-lg tracking-wider";
+                badgeBox.textContent = "HYPERCAR";
+                titleDesc.textContent = "Prototipos de Máxima Tecnología Híbrida (680 CV / 1030 kg)";
+                subDesc.textContent = "Gestión de energía virtual, aerodinámica extrema y tráfico constante doblando LMGT3. Recomendado para pilotos experimentados.";
+                slotsBadge.textContent = "9 / 18 Plazas Libres";
+            } else {
+                btnGt3.className = "px-5 py-2.5 rounded-lg font-display text-xs sm:text-sm transition flex items-center gap-2 bg-orange-500 text-black shadow-lg shadow-orange-500/30";
+                btnHyper.className = "px-5 py-2.5 rounded-lg font-display text-xs sm:text-sm transition flex items-center gap-2 text-gray-400 hover:text-white";
+                banner.style.borderLeftColor = "#ff8800";
+                badgeBox.className = "px-4 py-2 rounded-lg wec-plate-lmgt3 font-display text-white text-lg tracking-wider";
+                badgeBox.textContent = "LMGT3";
+                titleDesc.textContent = "Gran Turismo Oficiales WEC con ABS y Control de Tracción";
+                subDesc.textContent = "Batallas rueda a rueda al milímetro en rebufo. Perfecto tanto para veteranos del GT como para nuevos pilotos de la comunidad RastaRacing.";
+                slotsBadge.textContent = "9 / 20 Plazas Libres";
+            }
+
+            const container = document.getElementById('carsContainer');
+            container.innerHTML = lmuCars[cat].map(car => `
+                <div class="glass-card glass-card-hover rounded-2xl p-5 flex flex-col justify-between relative overflow-hidden group">
+                    <div class="absolute top-0 left-0 w-full h-1" style="background:${car.color}"></div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-telemetry mb-2">
+                            <span class="text-gray-400 uppercase">${car.brand}</span>
+                            <span class="px-2 py-0.5 rounded bg-white/10 text-rastaGreen font-bold">${car.slots}</span>
+                        </div>
+                        <h4 class="font-display text-xl text-white group-hover:text-rastaGold transition">${car.name}</h4>
+                        <span class="inline-block mt-1 text-[11px] font-telemetry px-2 py-0.5 rounded bg-white/5 text-gray-300 border border-white/10">
+                            ★ ${car.tag}
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 my-4 pt-3 border-t border-white/10 font-telemetry text-xs">
+                        <div>
+                            <span class="text-gray-500 block">MOTORIZACIÓN</span>
+                            <strong class="text-gray-200">${car.power}</strong>
+                        </div>
+                        <div>
+                            <span class="text-gray-500 block">VEL. PUNTA LMU</span>
+                            <strong class="text-rastaGold">${car.topSpeed}</strong>
+                        </div>
+                    </div>
+
+                    <button onclick="quickSelectCar('${cat}', '${car.name}')" class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-rastaGreen hover:text-black font-telemetry font-bold text-xs uppercase tracking-wider transition border border-white/10">
+                        Elegir este Coche e Inscribirme <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function quickSelectCar(cat, carName) {
+            document.getElementById('regClass').value = cat;
+            populateCarDropdown();
+            document.getElementById('regCar').value = carName;
+            updateLivePlate();
+            document.getElementById('inscripcion').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // 5. RENDER 10-WEEKEND CALENDAR
+        // ==========================================
+        function filterCalendar(filterType) {
+            ['ALL', 'SPRINT', 'ENDURANCE'].forEach(type => {
+                const btn = document.getElementById('cal-filter-' + type);
+                if (type === filterType) {
+                    btn.className = "px-4 py-2 rounded-lg bg-rastaGreen text-black font-bold transition";
+                } else {
+                    btn.className = "px-4 py-2 rounded-lg glass-card text-gray-300 hover:text-white transition";
+                }
+            });
+
+            const filtered = filterType === 'ALL' ? calendarRounds : calendarRounds.filter(r => r.type === filterType);
+            const grid = document.getElementById('calendarGrid');
+
+            grid.innerHTML = filtered.map(r => {
+                const isSpecial = r.type === 'ENDURANCE';
+                return `
+                <div onclick="openRaceModal(${r.round})" class="glass-card glass-card-hover cursor-pointer rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden ${isSpecial ? 'border-rastaGold/50 bg-gradient-to-b from-rastaGold/10 to-transparent' : ''}">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-telemetry mb-2">
+                            <span class="px-2 py-0.5 rounded font-bold ${isSpecial ? 'bg-rastaGold text-black' : 'bg-white/10 text-rastaGreen'}">
+                                FECHA #${r.round}
+                            </span>
+                            <span class="text-gray-400">${r.date}</span>
+                        </div>
+                        <h4 class="font-display text-lg text-white leading-snug">${r.name}</h4>
+                        <p class="text-xs text-gray-400 font-telemetry mt-0.5">${r.subtitle}</p>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-white/10 space-y-1.5 font-telemetry text-xs">
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-400"><i class="fa-regular fa-clock text-rastaGreen mr-1"></i>Duración:</span>
+                            <strong class="text-white">${r.duration}</strong>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-400"><i class="fa-solid ${r.icon} text-rastaGold mr-1"></i>Clima:</span>
+                            <strong class="text-gray-200">${r.weather}</strong>
+                        </div>
+                        <div class="pt-1">
+                            <span class="block text-center py-1 rounded bg-white/5 text-[11px] font-bold ${isSpecial ? 'text-rastaGold' : 'text-rastaGreen'}">
+                                ${r.points} • Ver Horarios
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function openRaceModal(roundNumber) {
+            const race = calendarRounds.find(r => r.round === roundNumber);
+            if (!race) return;
+            selectedModalRound = race;
+            document.getElementById('modalRaceRound').textContent = `RONDA ${race.round} DE 10 (${race.date.toUpperCase()})`;
+            document.getElementById('modalRaceTitle').textContent = race.name;
+            document.getElementById('modalRaceSubtitle').textContent = race.subtitle;
+            document.getElementById('modalRaceDuration').textContent = race.duration;
+            document.getElementById('modalRaceWeather').textContent = race.weather;
+            document.getElementById('modalRacePoints').textContent = race.points;
+
+            const modal = document.getElementById('raceModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeRaceModal() {
+            const modal = document.getElementById('raceModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function selectRaceForRegistration() {
+            closeRaceModal();
+            const modeSelect = document.getElementById('regMode');
+            if (selectedModalRound) {
+                const customOptionText = `Wildcard: Ronda ${selectedModalRound.round} - ${selectedModalRound.name}`;
+                let exists = Array.from(modeSelect.options).some(opt => opt.value === customOptionText);
+                if (!exists) {
+                    const opt = document.createElement('option');
+                    opt.value = customOptionText;
+                    opt.textContent = customOptionText;
+                    modeSelect.appendChild(opt);
+                }
+                modeSelect.value = customOptionText;
+                updateLivePlate();
+            }
+            document.getElementById('inscripcion').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // 6. INTERACTIVE REGISTRATION & LIVE PLATE
+        // ==========================================
+        function populateCarDropdown() {
+            const cat = document.getElementById('regClass').value;
+            const carSelect = document.getElementById('regCar');
+            carSelect.innerHTML = lmuCars[cat].map(c => `<option value="${c.name}">${c.name} (${c.brand})</option>`).join('');
+        }
+
+        function updateLivePlate() {
+            const name = document.getElementById('regName').value.trim() || 'RASTA_FITTIPALDI';
+            const twitch = document.getElementById('regTwitch').value.trim() || '@tu_usuario_twitch';
+            const num = document.getElementById('regNumber').value || '77';
+            const cat = document.getElementById('regClass').value;
+            const car = document.getElementById('regCar').value;
+            const lic = document.getElementById('regLicense').value;
+            const mode = document.getElementById('regMode').value;
+
+            document.getElementById('previewDriverName').textContent = name.toUpperCase();
+            document.getElementById('previewTwitch').innerHTML = `<i class="fa-brands fa-twitch mr-1"></i>${twitch.startsWith('@') ? twitch : '@' + twitch}`;
+            document.getElementById('previewNumber').textContent = `#${num}`;
+            document.getElementById('previewClassLabel').textContent = cat;
+            document.getElementById('previewCarName').textContent = car;
+            document.getElementById('previewLicenseBadge').textContent = lic;
+            document.getElementById('previewMode').textContent = mode;
+
+            const plateBox = document.getElementById('previewPlateBox');
+            if (cat === 'HYPERCAR') {
+                plateBox.className = "wec-plate-hypercar rounded-xl px-5 py-3 min-w-[130px] text-center border-2 border-white/80 transition-all";
+            } else {
+                plateBox.className = "wec-plate-lmgt3 rounded-xl px-5 py-3 min-w-[130px] text-center border-2 border-white/80 transition-all";
+            }
+        }
+
+        function handleDriverRegistration(e) {
+            e.preventDefault();
+            const name = document.getElementById('regName').value.trim() || 'Piloto_Comunidad';
+            const twitchRaw = document.getElementById('regTwitch').value.trim() || '@piloto_rasta';
+            const twitch = twitchRaw.startsWith('@') ? twitchRaw : '@' + twitchRaw;
+            const number = parseInt(document.getElementById('regNumber').value, 10) || 99;
+            const category = document.getElementById('regClass').value;
+            const car = document.getElementById('regCar').value;
+            const license = document.getElementById('regLicense').value;
+            const mode = document.getElementById('regMode').value;
+
+            const newDriver = {
+                number,
+                name,
+                twitch,
+                category,
+                car,
+                license,
+                mode,
+                points: 0,
+                isNew: true
+            };
+
+            registeredDrivers.unshift(newDriver);
+            switchStandingsTab('ENTRY');
+            launchConfetti();
+            showToast(`¡Piloto #${number} ${name} inscrito con éxito!`, `Añadido en directo con el ${car} (${category})`);
+
+            // Update Hero Counter
+            const currentSlots = Math.min(38, 19 + registeredDrivers.length);
+            const pct = Math.round((currentSlots / 38) * 100);
+            document.getElementById('heroSlotsCounter').textContent = `${currentSlots} / 38`;
+            document.getElementById('heroCapacityPercent').textContent = `${pct}% COMPLETADO`;
+            document.getElementById('heroProgressBar').style.width = `${pct}%`;
+
+            document.getElementById('parrilla').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // 7. RENDER STANDINGS & ENTRY LIST TABLE
+        // ==========================================
+        function switchStandingsTab(tab) {
+            currentStandingsTab = tab;
+            ['ENTRY', 'HYPERCAR', 'LMGT3'].forEach(t => {
+                const btn = document.getElementById('tab-' + t);
+                if (t === tab) {
+                    btn.className = "px-4 py-2.5 rounded-xl font-display text-xs uppercase bg-rastaGreen text-black transition";
+                } else {
+                    btn.className = "px-4 py-2.5 rounded-xl font-display text-xs uppercase glass-card text-gray-300 hover:text-white transition";
+                }
+            });
+
+            document.getElementById('entryCountBadge').textContent = registeredDrivers.length;
+            const tbody = document.getElementById('standingsTableBody');
+
+            let list = [...registeredDrivers];
+            if (tab === 'HYPERCAR') {
+                list = list.filter(d => d.category === 'HYPERCAR').sort((a, b) => b.points - a.points);
+            } else if (tab === 'LMGT3') {
+                list = list.filter(d => d.category === 'LMGT3').sort((a, b) => b.points - a.points);
+            }
+
+            tbody.innerHTML = list.map((d, idx) => {
+                const isHyper = d.category === 'HYPERCAR';
+                return `
+                <tr class="hover:bg-white/5 transition ${d.isNew ? 'bg-rastaGreen/10' : ''}">
+                    <td class="py-3.5 px-4 font-display text-sm">
+                        ${tab === 'ENTRY' 
+                            ? `<span class="inline-flex items-center gap-1.5 text-xs font-telemetry text-rastaGreen"><span class="w-2 h-2 rounded-full bg-rastaGreen"></span>CONFIRMADO</span>`
+                            : `<span class="px-2.5 py-1 rounded ${idx === 0 ? 'bg-rastaGold text-black' : 'bg-white/10 text-white'}">P${idx + 1}</span>`
+                        }
+                    </td>
+                    <td class="py-3.5 px-4">
+                        <span class="font-display text-sm px-2.5 py-1 rounded text-white ${isHyper ? 'bg-rastaRed' : 'bg-orange-500 text-black'}">
+                            #${d.number}
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-4">
+                        <div class="font-bold text-white flex items-center gap-2">
+                            ${d.name}
+                            ${d.isNew ? `<span class="text-[10px] bg-rastaGreen text-black px-1.5 py-0.5 rounded font-bold uppercase">NUEVO</span>` : ''}
+                        </div>
+                        <div class="text-xs text-twitch">${d.twitch}</div>
+                    </td>
+                    <td class="py-3.5 px-4">
+                        <span class="text-xs font-bold ${isHyper ? 'text-rastaRed' : 'text-orange-400'}">${d.category}</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-gray-200 font-semibold">${d.car}</td>
+                    <td class="py-3.5 px-4">
+                        <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-xs text-gray-300">${d.license}</span>
+                    </td>
+                    <td class="py-3.5 px-4 text-right font-bold">
+                        ${tab === 'ENTRY'
+                            ? `<span class="text-xs text-rastaGold">${d.mode}</span>`
+                            : `<span class="font-display text-base text-rastaGreen">${d.points} PTS</span>`
+                        }
+                    </td>
+                </tr>
+                `;
+            }).join('');
+        }
+
+        // ==========================================
+        // 8. PITCH MODAL, COUNTDOWN & CONFETTI
+        // ==========================================
+        function togglePitchModal() {
+            const modal = document.getElementById('pitchModal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function showToast(title, msg) {
+            const toast = document.getElementById('toastAlert');
+            document.getElementById('toastTitle').textContent = title;
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 4500);
+        }
+
+        // Countdown timer
+        let totalSeconds = (4 * 86400) + (18 * 3600) + (42 * 60) + 19;
+        setInterval(() => {
+            if (totalSeconds > 0) totalSeconds--;
+            const d = Math.floor(totalSeconds / 86400);
+            const h = Math.floor((totalSeconds % 86400) / 3600);
+            const m = Math.floor((totalSeconds % 3600) / 60);
+            const s = totalSeconds % 60;
+            document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+            document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+            document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+            document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+        }, 1000);
+
+        // Celebration Confetti in Rasta Colors
+        function launchConfetti() {
+            const canvas = document.getElementById('confettiCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const colors = ['#00ff66', '#ffcc00', '#ff1e38', '#9146ff', '#ffffff'];
+            const pieces = Array.from({ length: 90 }, () => ({
+                x: Math.random() * canvas.width,
+                y: -20 - Math.random() * 100,
+                w: 6 + Math.random() * 6,
+                h: 10 + Math.random() * 8,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                vy: 3 + Math.random() * 5,
+                vx: -2 + Math.random() * 4,
+                angle: Math.random() * Math.PI * 2,
+                spin: -0.1 + Math.random() * 0.2
+            }));
+
+            let frame = 0;
+            function animateConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                pieces.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.angle += p.spin;
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.angle);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                    ctx.restore();
+                });
+                frame++;
+                if (frame < 140) {
+                    requestAnimationFrame(animateConfetti);
+                } else {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            animateConfetti();
+        }
+
+        // Initialize Page
+        window.onload = function () {
+            switchCategory('HYPERCAR');
+            filterCalendar('ALL');
+            populateCarDropdown();
+            updateLivePlate();
+            switchStandingsTab('ENTRY');
+        };
+    </script>
+</body>
+</html>
