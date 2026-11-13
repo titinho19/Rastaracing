@@ -236,19 +236,19 @@
 
                 <!-- Navegación Central (Las 4 Secciones en 1) -->
                 <nav class="flex items-center gap-1 sm:gap-2 overflow-x-auto">
-                    <button id="tab-btn-hub" onclick="switchMainView('hub')" class="nav-tab active px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 cursor-pointer shrink-0">
+                    <button type="button" id="tab-btn-hub" onclick="switchMainView('hub')" class="nav-tab active px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 cursor-pointer shrink-0">
                         <i class="fa-solid fa-sliders"></i>
                         <span>Hub &amp; Reviews</span>
                     </button>
-                    <button id="tab-btn-championship" onclick="switchMainView('championship')" class="nav-tab px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer shrink-0">
+                    <button type="button" id="tab-btn-championship" onclick="switchMainView('championship')" class="nav-tab px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer shrink-0">
                         <i class="fa-solid fa-trophy text-[#FFD000]"></i>
                         <span>Campeonato LMU</span>
                     </button>
-                    <button id="tab-btn-setups" onclick="switchMainView('setups')" class="nav-tab px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer shrink-0">
+                    <button type="button" id="tab-btn-setups" onclick="switchMainView('setups')" class="nav-tab px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer shrink-0">
                         <i class="fa-solid fa-wrench text-[#FFD000]"></i>
                         <span>Setups LMU</span>
                     </button>
-                    <button id="tab-btn-giveaway" onclick="switchMainView('giveaway')" class="nav-tab px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer shrink-0">
+                    <button type="button" id="tab-btn-giveaway" onclick="switchMainView('giveaway')" class="nav-tab px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer shrink-0">
                         <i class="fa-solid fa-flag-checkered text-[#FFD000]"></i>
                         <span>Sorteos Live</span>
                     </button>
@@ -311,13 +311,13 @@
                     </div>
 
                     <div class="pt-3 flex flex-wrap gap-3 border-t border-white/10">
-                        <button onclick="switchMainView('championship')" class="px-4 py-2 rounded-lg bg-[#FFD000] hover:bg-[#e5ba00] text-black font-hud font-black text-xs uppercase tracking-wider transition cursor-pointer">
+                        <button type="button" onclick="switchMainView('championship')" class="px-4 py-2 rounded-lg bg-[#FFD000] hover:bg-[#e5ba00] text-black font-hud font-black text-xs uppercase tracking-wider transition cursor-pointer">
                             <i class="fa-solid fa-trophy mr-1"></i> Ir al Campeonato LMU
                         </button>
-                        <button onclick="switchMainView('setups')" class="px-4 py-2 rounded-lg bg-[#FFD000]/15 hover:bg-[#FFD000]/25 border border-[#FFD000] text-[#FFD000] font-hud font-bold text-xs uppercase tracking-wider transition cursor-pointer">
+                        <button type="button" onclick="switchMainView('setups')" class="px-4 py-2 rounded-lg bg-[#FFD000]/15 hover:bg-[#FFD000]/25 border border-[#FFD000] text-[#FFD000] font-hud font-bold text-xs uppercase tracking-wider transition cursor-pointer">
                             <i class="fa-solid fa-wrench mr-1"></i> Descargar &amp; Subir Setups LMU
                         </button>
-                        <button onclick="switchMainView('giveaway')" class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-hud font-bold text-xs uppercase tracking-wider transition cursor-pointer">
+                        <button type="button" onclick="switchMainView('giveaway')" class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-hud font-bold text-xs uppercase tracking-wider transition cursor-pointer">
                             <i class="fa-solid fa-flag-checkered mr-1 text-[#FFD000]"></i> Simulador de Sorteos
                         </button>
                     </div>
@@ -447,7 +447,7 @@
                         <p class="text-xs text-gray-300 mb-2">Usa nuestro enlace en The French Sim Racer o pon nuestro correo al darte de alta en iRacing:</p>
                         <div class="flex items-center justify-between bg-black/70 border border-[#FFD000]/30 rounded-lg px-2.5 py-1.5 mb-3">
                             <code class="text-xs text-[#FFD000] font-bold">rastaracing83@gmail.com</code>
-                            <button onclick="copyReferralEmail()" id="copy-email-btn" class="text-[11px] bg-[#FFD000] text-black px-2 py-0.5 rounded font-bold cursor-pointer">
+                            <button type="button" onclick="copyReferralEmail()" id="copy-email-btn" class="text-[11px] bg-[#FFD000] text-black px-2 py-0.5 rounded font-bold cursor-pointer">
                                 Copiar
                             </button>
                         </div>
@@ -464,7 +464,7 @@
             </div>
         </section>
 
-        <!-- ================= SECCIÓN VÍDEOS & REVIEWS OFICIALES DE YOUTUBE (CORREGIDA) ================= -->
+        <!-- ================= SECCIÓN VÍDEOS & REVIEWS OFICIALES DE YOUTUBE ================= -->
         <section id="reviews-youtube" class="gold-panel rounded-3xl p-6 sm:p-8 border border-[#FFD000]/30">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
                 <div>
@@ -481,7 +481,7 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                <!-- Reproductor Principal Incrustado (Con youtube-nocookie y referrerpolicy) -->
+                <!-- Reproductor Principal Incrustado -->
                 <div class="lg:col-span-8">
                     <div class="relative w-full aspect-video rounded-2xl overflow-hidden border-2 border-[#FFD000]/50 shadow-[0_0_35px_rgba(255,208,0,0.15)] bg-black">
                         <iframe id="main-youtube-iframe" class="w-full h-full" src="https://www.youtube-nocookie.com/embed/65TLntsXb_c?rel=0" title="Rasta Racing YouTube Review Player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -503,7 +503,7 @@
                 <div class="lg:col-span-4 flex flex-col gap-2.5 max-h-[480px] overflow-y-auto pr-1">
                     <div class="text-xs font-hud font-bold uppercase text-gray-400 mb-1">SELECCIONA UNA REVIEW PARA REPRODUCIR:</div>
 
-                    <button onclick="changeYoutubeVideo('65TLntsXb_c', 'REVIEW NJ MOTION COMPACT EVO')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
+                    <button type="button" onclick="changeYoutubeVideo('65TLntsXb_c', 'REVIEW NJ MOTION COMPACT EVO')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
                         <img src="https://i.ytimg.com/vi/65TLntsXb_c/mqdefault.jpg" alt="NJ Motion Review" class="w-24 h-14 object-cover rounded-lg border border-white/15 shrink-0">
                         <div class="overflow-hidden">
                             <span class="text-[10px] font-hud text-[#FFD000] font-bold block">MOTION SYSTEM • 25:30</span>
@@ -511,7 +511,7 @@
                         </div>
                     </button>
 
-                    <button onclick="changeYoutubeVideo('NtUTWMvDq_8', 'REVIEW ACTIVE PEDALS SIMUCUBE')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-white/10 hover:border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
+                    <button type="button" onclick="changeYoutubeVideo('NtUTWMvDq_8', 'REVIEW ACTIVE PEDALS SIMUCUBE')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-white/10 hover:border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
                         <img src="https://i.ytimg.com/vi/NtUTWMvDq_8/mqdefault.jpg" alt="Active Pedals Simucube" class="w-24 h-14 object-cover rounded-lg border border-white/15 shrink-0">
                         <div class="overflow-hidden">
                             <span class="text-[10px] font-hud text-[#FFD000] font-bold block">PEDALES • 23:59</span>
@@ -519,7 +519,7 @@
                         </div>
                     </button>
 
-                    <button onclick="changeYoutubeVideo('bcniXRzLozo', 'Comparativa Simucube 2 Pro vs Simagic Alpha Ultimate')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-white/10 hover:border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
+                    <button type="button" onclick="changeYoutubeVideo('bcniXRzLozo', 'Comparativa Simucube 2 Pro vs Simagic Alpha Ultimate')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-white/10 hover:border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
                         <img src="https://i.ytimg.com/vi/bcniXRzLozo/mqdefault.jpg" alt="Simucube 2 Pro vs Simagic" class="w-24 h-14 object-cover rounded-lg border border-white/15 shrink-0">
                         <div class="overflow-hidden">
                             <span class="text-[10px] font-hud text-[#FFD000] font-bold block">BASES DD • 10:54</span>
@@ -527,7 +527,7 @@
                         </div>
                     </button>
 
-                    <button onclick="changeYoutubeVideo('YwDGPHNhf68', 'REVIEW DS-8X SIMAGIC EN ESPAÑOL')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-white/10 hover:border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
+                    <button type="button" onclick="changeYoutubeVideo('YwDGPHNhf68', 'REVIEW DS-8X SIMAGIC EN ESPAÑOL')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-white/10 hover:border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
                         <img src="https://i.ytimg.com/vi/YwDGPHNhf68/mqdefault.jpg" alt="Review DS-8X Simagic" class="w-24 h-14 object-cover rounded-lg border border-white/15 shrink-0">
                         <div class="overflow-hidden">
                             <span class="text-[10px] font-hud text-[#FFD000] font-bold block">SHIFTER • 16:20</span>
@@ -535,7 +535,7 @@
                         </div>
                     </button>
 
-                    <button onclick="changeYoutubeVideo('SsSRRG7TuQA', 'RETROVISOR REAL EN TU SIMULADOR')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-white/10 hover:border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
+                    <button type="button" onclick="changeYoutubeVideo('SsSRRG7TuQA', 'RETROVISOR REAL EN TU SIMULADOR')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-white/10 hover:border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
                         <img src="https://i.ytimg.com/vi/SsSRRG7TuQA/mqdefault.jpg" alt="Retrovisor Real Simulador" class="w-24 h-14 object-cover rounded-lg border border-white/15 shrink-0">
                         <div class="overflow-hidden">
                             <span class="text-[10px] font-hud text-[#FFD000] font-bold block">INMERSIÓN • 07:22</span>
@@ -543,7 +543,7 @@
                         </div>
                     </button>
 
-                    <button onclick="changeYoutubeVideo('_cELQBGQcq8', 'Me cambio al Secuencial de BJ Simracing')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-white/10 hover:border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
+                    <button type="button" onclick="changeYoutubeVideo('_cELQBGQcq8', 'Me cambio al Secuencial de BJ Simracing')" class="w-full text-left p-3 rounded-xl bg-black/60 hover:bg-[#FFD000]/15 border border-white/10 hover:border-[#FFD000]/40 transition flex items-center gap-3 cursor-pointer group">
                         <img src="https://i.ytimg.com/vi/_cELQBGQcq8/mqdefault.jpg" alt="BJ Simracing Secuencial" class="w-24 h-14 object-cover rounded-lg border border-white/15 shrink-0">
                         <div class="overflow-hidden">
                             <span class="text-[10px] font-hud text-[#FFD000] font-bold block">SECUENCIAL • 10:12</span>
@@ -799,19 +799,19 @@
                     </h3>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <button id="btn-garage-HYPERCAR" onclick="renderGarageCars('HYPERCAR')" class="px-4 py-2 rounded-xl font-hud font-black text-xs uppercase tracking-wider bg-[#FFD000] text-black transition cursor-pointer">
+                    <button type="button" id="btn-garage-HYPERCAR" onclick="renderGarageCars('HYPERCAR')" class="px-4 py-2 rounded-xl font-hud font-black text-xs uppercase tracking-wider bg-[#FFD000] text-black transition cursor-pointer">
                         Hypercar (15)
                     </button>
-                    <button id="btn-garage-LMP2" onclick="renderGarageCars('LMP2')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
+                    <button type="button" id="btn-garage-LMP2" onclick="renderGarageCars('LMP2')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
                         LMP2 (2)
                     </button>
-                    <button id="btn-garage-LMP3" onclick="renderGarageCars('LMP3')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
+                    <button type="button" id="btn-garage-LMP3" onclick="renderGarageCars('LMP3')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
                         LMP3 (4)
                     </button>
-                    <button id="btn-garage-LMGT3" onclick="renderGarageCars('LMGT3')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
+                    <button type="button" id="btn-garage-LMGT3" onclick="renderGarageCars('LMGT3')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
                         LMGT3 (10)
                     </button>
-                    <button id="btn-garage-GTE" onclick="renderGarageCars('GTE')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
+                    <button type="button" id="btn-garage-GTE" onclick="renderGarageCars('GTE')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
                         GTE 2023 (4)
                     </button>
                 </div>
@@ -923,7 +923,7 @@
                         <h3 class="font-hud font-black text-xl text-white uppercase">PARRILLA OFICIAL DE INSCRITOS</h3>
                         <p class="text-xs text-gray-400">Conectada en tiempo real a SheetDB (`le81cjhidevs4`)</p>
                     </div>
-                    <button onclick="fetchChampionshipDrivers()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-hud font-bold text-[#FFD000] transition cursor-pointer">
+                    <button type="button" onclick="fetchChampionshipDrivers()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-hud font-bold text-[#FFD000] transition cursor-pointer">
                         <i class="fa-solid fa-rotate mr-1"></i> Recargar Datos
                     </button>
                 </div>
@@ -931,12 +931,12 @@
                 <!-- Barra de Búsqueda y Filtros de las 5 Clases -->
                 <div class="flex flex-wrap items-center justify-between gap-3">
                     <div class="flex flex-wrap gap-1.5">
-                        <button onclick="setEntryFilter('ALL')" id="filter-btn-ALL" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-[#FFD000] text-black cursor-pointer">Todos</button>
-                        <button onclick="setEntryFilter('HYPERCAR')" id="filter-btn-HYPERCAR" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">Hypercar</button>
-                        <button onclick="setEntryFilter('LMP2')" id="filter-btn-LMP2" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">LMP2</button>
-                        <button onclick="setEntryFilter('LMP3')" id="filter-btn-LMP3" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">LMP3</button>
-                        <button onclick="setEntryFilter('LMGT3')" id="filter-btn-LMGT3" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">LMGT3</button>
-                        <button onclick="setEntryFilter('GTE')" id="filter-btn-GTE" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">GTE</button>
+                        <button type="button" onclick="setEntryFilter('ALL')" id="filter-btn-ALL" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-[#FFD000] text-black cursor-pointer">Todos</button>
+                        <button type="button" onclick="setEntryFilter('HYPERCAR')" id="filter-btn-HYPERCAR" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">Hypercar</button>
+                        <button type="button" onclick="setEntryFilter('LMP2')" id="filter-btn-LMP2" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">LMP2</button>
+                        <button type="button" onclick="setEntryFilter('LMP3')" id="filter-btn-LMP3" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">LMP3</button>
+                        <button type="button" onclick="setEntryFilter('LMGT3')" id="filter-btn-LMGT3" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">LMGT3</button>
+                        <button type="button" onclick="setEntryFilter('GTE')" id="filter-btn-GTE" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">GTE</button>
                     </div>
                     <div class="relative flex-grow max-w-xs">
                         <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-500 text-xs"></i>
@@ -1069,7 +1069,7 @@
                         <h3 class="font-hud font-black text-xl text-white uppercase">SETUPS DISPONIBLES PARA DESCARGAR</h3>
                         <p class="text-xs text-gray-400">Filtra por categoría, coche o circuito y valora las configuraciones de la comunidad</p>
                     </div>
-                    <button onclick="fetchSetupsFromSupabase()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-hud font-bold text-[#FFD000] transition cursor-pointer">
+                    <button type="button" onclick="fetchSetupsFromSupabase()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-hud font-bold text-[#FFD000] transition cursor-pointer">
                         <i class="fa-solid fa-rotate mr-1"></i> Actualizar Lista
                     </button>
                 </div>
@@ -1122,7 +1122,7 @@
     <!-- MODAL DETALLE DE RONDA DEL CALENDARIO -->
     <div id="round-detail-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
         <div class="gold-panel max-w-lg w-full rounded-3xl border-2 border-[#FFD000] p-6 sm:p-7 relative">
-            <button onclick="closeRoundModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl cursor-pointer">
+            <button type="button" onclick="closeRoundModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <span id="modal-round-badge" class="px-3 py-1 rounded-full bg-[#FFD000] text-black font-hud text-xs font-black uppercase">RONDA 1</span>
@@ -1149,10 +1149,10 @@
             </div>
 
             <div class="flex gap-3">
-                <button id="modal-round-select-btn" class="w-full py-3 rounded-xl bg-[#FFD000] hover:bg-[#e5ba00] text-black font-hud font-black text-xs uppercase tracking-wider cursor-pointer">
+                <button type="button" id="modal-round-select-btn" class="w-full py-3 rounded-xl bg-[#FFD000] hover:bg-[#e5ba00] text-black font-hud font-black text-xs uppercase tracking-wider cursor-pointer">
                     Inscribirme en esta Ronda
                 </button>
-                <button onclick="closeRoundModal()" class="px-4 py-3 rounded-xl bg-white/10 text-white font-hud font-bold text-xs uppercase cursor-pointer">
+                <button type="button" onclick="closeRoundModal()" class="px-4 py-3 rounded-xl bg-white/10 text-white font-hud font-bold text-xs uppercase cursor-pointer">
                     Cerrar
                 </button>
             </div>
@@ -1206,12 +1206,12 @@
                     </select>
                 </div>
 
-                <button id="btn-start-race" onclick="startRaceSequence()" class="px-6 py-3 rounded-xl font-hud font-black text-sm uppercase tracking-wider bg-[#FFD000] hover:bg-[#e5ba00] text-black transition shadow-[0_0_25px_rgba(255,208,0,0.4)] flex items-center gap-2 cursor-pointer">
+                <button type="button" id="btn-start-race" onclick="startRaceSequence()" class="px-6 py-3 rounded-xl font-hud font-black text-sm uppercase tracking-wider bg-[#FFD000] hover:bg-[#e5ba00] text-black transition shadow-[0_0_25px_rgba(255,208,0,0.4)] flex items-center gap-2 cursor-pointer">
                     <i class="fa-solid fa-play"></i>
                     <span>LANZAR CARRERA</span>
                 </button>
 
-                <button onclick="resetTrack()" class="px-4 py-3 rounded-xl font-hud font-bold text-sm uppercase bg-white/10 hover:bg-white/20 text-white transition cursor-pointer" title="Reiniciar posiciones">
+                <button type="button" onclick="resetTrack()" class="px-4 py-3 rounded-xl font-hud font-bold text-sm uppercase bg-white/10 hover:bg-white/20 text-white transition cursor-pointer" title="Reiniciar posiciones">
                     <i class="fa-solid fa-rotate-left"></i>
                 </button>
             </div>
@@ -1229,7 +1229,7 @@
 
                 <div class="flex gap-2">
                     <input type="text" id="single-driver-input" placeholder="Nombre del seguidor..." class="w-full bg-black/60 border border-white/15 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-[#FFD000]" onkeydown="if(event.key==='Enter') addSingleDriver()">
-                    <button onclick="addSingleDriver()" class="px-4 py-2 rounded-xl bg-[#FFD000] hover:bg-[#e5ba00] text-black font-bold text-sm transition shrink-0 cursor-pointer">
+                    <button type="button" onclick="addSingleDriver()" class="px-4 py-2 rounded-xl bg-[#FFD000] hover:bg-[#e5ba00] text-black font-bold text-sm transition shrink-0 cursor-pointer">
                         <i class="fa-solid fa-plus"></i>
                     </button>
                 </div>
@@ -1237,12 +1237,12 @@
                 <div class="bg-black/40 rounded-xl p-3 border border-white/5">
                     <div class="flex items-center justify-between mb-1.5">
                         <label class="text-xs font-bold text-gray-300 uppercase">Pegar lista (1 por línea)</label>
-                        <button onclick="loadPresetDrivers()" class="text-[11px] text-[#FFD000] hover:underline font-semibold cursor-pointer">
+                        <button type="button" onclick="loadPresetDrivers()" class="text-[11px] text-[#FFD000] hover:underline font-semibold cursor-pointer">
                             Cargar Demo
                         </button>
                     </div>
                     <textarea id="bulk-drivers-input" rows="3" placeholder="Pega varios nombres aquí..." class="w-full bg-black/70 border border-white/10 rounded-lg p-2 text-xs text-white focus:outline-none focus:border-[#FFD000] resize-none"></textarea>
-                    <button onclick="addBulkDrivers()" class="mt-2 w-full py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white uppercase transition cursor-pointer">
+                    <button type="button" onclick="addBulkDrivers()" class="mt-2 w-full py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white uppercase transition cursor-pointer">
                         Importar Lista a Pista
                     </button>
                 </div>
@@ -1258,9 +1258,9 @@
                     <div class="flex items-center justify-between text-xs text-gray-400 mb-2">
                         <span>PARRILLA DE SALIDA</span>
                         <div class="flex gap-2">
-                            <button onclick="shuffleDrivers()" class="hover:text-[#FFD000] cursor-pointer">Mezclar</button>
+                            <button type="button" onclick="shuffleDrivers()" class="hover:text-[#FFD000] cursor-pointer">Mezclar</button>
                             <span>|</span>
-                            <button onclick="clearAllDrivers()" class="hover:text-red-500 cursor-pointer">Vaciar</button>
+                            <button type="button" onclick="clearAllDrivers()" class="hover:text-red-500 cursor-pointer">Vaciar</button>
                         </div>
                     </div>
                     <div id="drivers-list-container" class="max-h-[300px] overflow-y-auto space-y-1.5 pr-1"></div>
@@ -1351,10 +1351,10 @@
             </div>
 
             <div class="mt-6 flex justify-center gap-4">
-                <button onclick="closePodiumAndRepeat()" class="px-6 py-2.5 rounded-xl bg-[#FFD000] text-black font-hud font-black text-xs uppercase cursor-pointer">
+                <button type="button" onclick="closePodiumAndRepeat()" class="px-6 py-2.5 rounded-xl bg-[#FFD000] text-black font-hud font-black text-xs uppercase cursor-pointer">
                     Repetir Carrera
                 </button>
-                <button onclick="closePodiumModal()" class="px-5 py-2.5 rounded-xl bg-white/10 text-white font-hud font-bold text-xs uppercase cursor-pointer">
+                <button type="button" onclick="closePodiumModal()" class="px-5 py-2.5 rounded-xl bg-white/10 text-white font-hud font-bold text-xs uppercase cursor-pointer">
                     Cerrar
                 </button>
             </div>
@@ -1378,7 +1378,7 @@
         </div>
     </footer>
 
-    <!-- ================= SCRIPTS UNIFICADOS ================= -->
+    <!-- ================= SCRIPTS UNIFICADOS (SIN ERRORES DE SINTAXIS) ================= -->
     <script>
         // =========================================================================
         // CONFIGURACIÓN DE SUPABASE (PEGA AQUÍ TUS 2 CLAVES DE SUPABASE)
@@ -1387,8 +1387,12 @@
         const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY_AQUI";
 
         let supabaseClient = null;
-        if (SUPABASE_URL.startsWith("http")) {
-            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        try {
+            if (window.supabase && SUPABASE_URL.startsWith("http")) {
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            }
+        } catch (err) {
+            console.warn("Supabase pendiente de configurar:", err);
         }
 
         // ENLACE SHEETDB DEL CAMPEONATO
@@ -1397,11 +1401,17 @@
         // 1. NAVEGACIÓN ENTRE LAS 4 VISTAS PRINCIPALES
         function switchMainView(viewName) {
             ['hub', 'championship', 'setups', 'giveaway'].forEach(v => {
-                document.getElementById(`view-${v}`).classList.add('hidden');
-                document.getElementById(`tab-btn-${v}`).classList.remove('active');
+                const viewEl = document.getElementById(`view-${v}`);
+                const tabEl = document.getElementById(`tab-btn-${v}`);
+                if (viewEl) viewEl.classList.add('hidden');
+                if (tabEl) tabEl.classList.remove('active');
             });
-            document.getElementById(`view-${viewName}`).classList.remove('hidden');
-            document.getElementById(`tab-btn-${viewName}`).classList.add('active');
+
+            const targetView = document.getElementById(`view-${viewName}`);
+            const targetTab = document.getElementById(`tab-btn-${viewName}`);
+            if (targetView) targetView.classList.remove('hidden');
+            if (targetTab) targetTab.classList.add('active');
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if (viewName === 'championship') {
@@ -1413,19 +1423,23 @@
             }
         }
 
-        // 2. CAMBIAR VÍDEO DEL REPRODUCTOR DE REVIEWS DE YOUTUBE (CON FIX ANTI-ERROR)
+        // 2. CAMBIAR VÍDEO DEL REPRODUCTOR DE REVIEWS DE YOUTUBE
         function changeYoutubeVideo(videoId, title) {
             const iframe = document.getElementById('main-youtube-iframe');
-            iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
-            document.getElementById('current-video-title').textContent = title;
-            document.getElementById('current-video-link').href = `https://www.youtube.com/watch?v=${videoId}`;
+            if (iframe) iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+            const titleEl = document.getElementById('current-video-title');
+            if (titleEl) titleEl.textContent = title;
+            const linkEl = document.getElementById('current-video-link');
+            if (linkEl) linkEl.href = `https://www.youtube.com/watch?v=${videoId}`;
         }
 
         function copyReferralEmail() {
             navigator.clipboard.writeText('rastaracing83@gmail.com');
             const btn = document.getElementById('copy-email-btn');
-            btn.textContent = '¡Copiado!';
-            setTimeout(() => { btn.textContent = 'Copiar'; }, 2000);
+            if (btn) {
+                btn.textContent = '¡Copiado!';
+                setTimeout(() => { btn.textContent = 'Copiar'; }, 2000);
+            }
         }
 
         // =========================================================================
@@ -1560,22 +1574,26 @@
             const filterCircuit = document.getElementById('filter-setup-circuito');
             const groupedTracksHTML = buildTrackOptgroupsHTML();
 
-            circuitSelect.innerHTML = groupedTracksHTML;
-            filterCircuit.innerHTML = `<option value="ALL">Todos los Circuitos (18)</option>` + groupedTracksHTML;
+            if (circuitSelect) circuitSelect.innerHTML = groupedTracksHTML;
+            if (filterCircuit) filterCircuit.innerHTML = `<option value="ALL">Todos los Circuitos (18)</option>` + groupedTracksHTML;
 
             updateFilterSetupCars();
         }
 
         function populateSetupCarSelect() {
-            const cat = document.getElementById('setup-categoria').value;
+            const catEl = document.getElementById('setup-categoria');
             const carSelect = document.getElementById('setup-coche');
+            if (!catEl || !carSelect) return;
+            const cat = catEl.value;
             carSelect.innerHTML = (LMU_GARAGE_DATA[cat] || []).map(c => `<option value="${c.name}">${c.name}</option>`).join('');
         }
 
         function updateFilterSetupCars() {
-            const catFilter = document.getElementById('filter-setup-categoria').value;
+            const catFilterEl = document.getElementById('filter-setup-categoria');
             const filterCar = document.getElementById('filter-setup-coche');
+            if (!catFilterEl || !filterCar) return;
 
+            const catFilter = catFilterEl.value;
             if (catFilter === 'ALL') {
                 const allGroupsHTML = Object.entries(LMU_GARAGE_DATA).map(([cat, cars]) => `
                     <optgroup label="Categoría ${cat}" class="bg-[#0e0e12] text-[#FFD000]">
@@ -1592,6 +1610,8 @@
 
         async function fetchSetupsFromSupabase() {
             const container = document.getElementById('setups-cards-container');
+            if (!container) return;
+
             if (!supabaseClient) {
                 container.innerHTML = `
                     <div class="p-6 rounded-2xl bg-black/60 border border-[#FFD000]/40 text-center space-y-2">
@@ -1623,6 +1643,8 @@
 
         function renderSetupsList() {
             const container = document.getElementById('setups-cards-container');
+            if (!container) return;
+
             const catFilter = document.getElementById('filter-setup-categoria').value;
             const carFilter = document.getElementById('filter-setup-coche').value;
             const trackFilter = document.getElementById('filter-setup-circuito').value;
@@ -1673,7 +1695,7 @@
                     </div>
 
                     <div class="flex items-center gap-2.5 self-end sm:self-center shrink-0">
-                        <button onclick="voteSetup(${setup.id}, ${setup.votos || 0})" ${alreadyVoted ? 'disabled' : ''} class="px-3.5 py-2 rounded-xl font-hud font-bold text-xs flex items-center gap-1.5 transition cursor-pointer ${alreadyVoted ? 'bg-[#FFD000]/30 text-[#FFD000] border border-[#FFD000]' : 'bg-white/10 hover:bg-[#FFD000]/20 text-white border border-white/15'}">
+                        <button type="button" onclick="voteSetup(${setup.id}, ${setup.votos || 0})" ${alreadyVoted ? 'disabled' : ''} class="px-3.5 py-2 rounded-xl font-hud font-bold text-xs flex items-center gap-1.5 transition cursor-pointer ${alreadyVoted ? 'bg-[#FFD000]/30 text-[#FFD000] border border-[#FFD000]' : 'bg-white/10 hover:bg-[#FFD000]/20 text-white border border-white/15'}">
                             <i class="fa-solid fa-thumbs-up text-[#FFD000]"></i>
                             <span>${setup.votos || 0}</span>
                         </button>
@@ -1776,32 +1798,35 @@
 
         function initChampionshipUI() {
             const grid = document.getElementById('calendar-grid');
-            grid.innerHTML = LMU_ROUNDS.map((round, idx) => `
-                <div onclick="openRoundModal(${idx})" class="gold-panel rounded-2xl p-4 border ${round.special ? 'border-[#FFD000]' : 'border-white/10'} hover:border-[#FFD000] cursor-pointer group flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="text-[10px] font-hud font-black px-2 py-0.5 rounded bg-[#FFD000] text-black">FECHA ${round.r}</span>
-                            <span class="text-[10px] font-hud font-bold ${round.special ? 'text-[#FFD000]' : 'text-gray-400'}">${round.format}</span>
+            if (grid) {
+                grid.innerHTML = LMU_ROUNDS.map((round, idx) => `
+                    <div onclick="openRoundModal(${idx})" class="gold-panel rounded-2xl p-4 border ${round.special ? 'border-[#FFD000]' : 'border-white/10'} hover:border-[#FFD000] cursor-pointer group flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] font-hud font-black px-2 py-0.5 rounded bg-[#FFD000] text-black">FECHA ${round.r}</span>
+                                <span class="text-[10px] font-hud font-bold ${round.special ? 'text-[#FFD000]' : 'text-gray-400'}">${round.format}</span>
+                            </div>
+                            <h4 class="font-hud font-bold text-base text-white group-hover:text-[#FFD000] transition">${round.name}</h4>
+                            <p class="text-xs text-gray-400 mt-0.5">${round.track}</p>
                         </div>
-                        <h4 class="font-hud font-bold text-base text-white group-hover:text-[#FFD000] transition">${round.name}</h4>
-                        <p class="text-xs text-gray-400 mt-0.5">${round.track}</p>
+                        <div class="mt-4 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-hud text-[#FFD000]">
+                            <span>Ver Horarios / Inscribir</span>
+                            <i class="fa-solid fa-chevron-right group-hover:translate-x-1 transition"></i>
+                        </div>
                     </div>
-                    <div class="mt-4 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-hud text-[#FFD000]">
-                        <span>Ver Horarios / Inscribir</span>
-                        <i class="fa-solid fa-chevron-right group-hover:translate-x-1 transition"></i>
-                    </div>
-                </div>
-            `).join('');
+                `).join('');
+            }
 
-            // Llenar selector de Rondas y todos los Circuitos DLC
             const regRonda = document.getElementById('reg-ronda');
-            regRonda.innerHTML = `
-                <option value="Todas (R1-R10)">Temporada Completa (10 Fechas WEC)</option>
-                <optgroup label="Calendario Oficial 10 Fechas" class="bg-[#0e0e12] text-[#FFD000]">
-                    ${LMU_ROUNDS.map(r => `<option value="${r.code}" class="text-white">${r.code} (${r.track})</option>`).join('')}
-                </optgroup>
-                ${buildTrackOptgroupsHTML()}
-            `;
+            if (regRonda) {
+                regRonda.innerHTML = `
+                    <option value="Todas (R1-R10)">Temporada Completa (10 Fechas WEC)</option>
+                    <optgroup label="Calendario Oficial 10 Fechas" class="bg-[#0e0e12] text-[#FFD000]">
+                        ${LMU_ROUNDS.map(r => `<option value="${r.code}" class="text-white">${r.code} (${r.track})</option>`).join('')}
+                    </optgroup>
+                    ${buildTrackOptgroupsHTML()}
+                `;
+            }
 
             renderGarageCars('HYPERCAR');
             updateCarOptions();
@@ -1821,6 +1846,8 @@
 
             const badgeStyle = getCategoryBadgeStyle(category);
             const grid = document.getElementById('garage-cars-grid');
+            if (!grid) return;
+
             grid.innerHTML = (LMU_GARAGE_DATA[category] || []).map(car => `
                 <div class="gold-panel rounded-2xl p-4 border border-white/10 flex flex-col justify-between">
                     <div>
@@ -1831,7 +1858,7 @@
                         <h4 class="font-hud font-bold text-base text-white mb-1">${car.name}</h4>
                         <p class="text-xs text-gray-400 mb-3"><i class="fa-solid fa-gears text-[#FFD000] mr-1"></i>${car.engine} • ${car.drive}</p>
                     </div>
-                    <button onclick="selectCarFromGarage('${category}', '${car.name}')" class="w-full py-2 rounded-xl bg-white/10 hover:bg-[#FFD000] hover:text-black text-white font-hud font-bold text-xs uppercase transition cursor-pointer">
+                    <button type="button" onclick="selectCarFromGarage('${category}', '${car.name}')" class="w-full py-2 rounded-xl bg-white/10 hover:bg-[#FFD000] hover:text-black text-white font-hud font-bold text-xs uppercase transition cursor-pointer">
                         Elegir este Coche
                     </button>
                 </div>
@@ -1872,16 +1899,24 @@
         }
 
         function updateCarOptions() {
-            const clase = document.getElementById('reg-clase').value;
+            const claseEl = document.getElementById('reg-clase');
             const select = document.getElementById('reg-coche');
+            if (!claseEl || !select) return;
+            const clase = claseEl.value;
             select.innerHTML = (LMU_GARAGE_DATA[clase] || []).map(c => `<option value="${c.name}">${c.name}</option>`).join('');
         }
 
         function updateLiveNumberplate() {
-            const dorsal = document.getElementById('reg-dorsal').value.trim() || '83';
-            const piloto = document.getElementById('reg-piloto').value.trim() || 'PILOTO OFICIAL';
-            const clase = document.getElementById('reg-clase').value;
-            const coche = document.getElementById('reg-coche').value;
+            const dorsalEl = document.getElementById('reg-dorsal');
+            const pilotoEl = document.getElementById('reg-piloto');
+            const claseEl = document.getElementById('reg-clase');
+            const cocheEl = document.getElementById('reg-coche');
+            if (!dorsalEl || !pilotoEl || !claseEl || !cocheEl) return;
+
+            const dorsal = dorsalEl.value.trim() || '83';
+            const piloto = pilotoEl.value.trim() || 'PILOTO OFICIAL';
+            const clase = claseEl.value;
+            const coche = cocheEl.value;
 
             document.getElementById('plate-number-preview').textContent = `#${dorsal}`;
             document.getElementById('plate-driver-preview').textContent = piloto.toUpperCase();
@@ -1920,6 +1955,7 @@
 
         function renderEntryListTable() {
             const tbody = document.getElementById('sheetdb-drivers-tbody');
+            if (!tbody) return;
             const query = (document.getElementById('entry-search-input')?.value || '').toLowerCase();
 
             const filtered = allRegisteredDrivers.filter(row => {
@@ -2085,7 +2121,10 @@
         function renderAll() {
             const listContainer = document.getElementById('drivers-list-container');
             const lanesArea = document.getElementById('lanes-render-area');
-            document.getElementById('driver-count-badge').textContent = `${drivers.length} Pilotos`;
+            const badge = document.getElementById('driver-count-badge');
+            if (!listContainer || !lanesArea || !badge) return;
+
+            badge.textContent = `${drivers.length} Pilotos`;
             listContainer.innerHTML = '';
             lanesArea.innerHTML = '';
 
@@ -2097,7 +2136,7 @@
                             <span class="font-hud text-xs text-[#FFD000]">#${driver.number}</span>
                             <span class="text-sm font-bold text-white truncate">${driver.name}</span>
                         </div>
-                        <button onclick="removeDriver(${driver.id})" class="text-gray-500 hover:text-red-500 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+                        <button type="button" onclick="removeDriver(${driver.id})" class="text-gray-500 hover:text-red-500 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
                     </div>`;
 
                 lanesArea.innerHTML += `
@@ -2177,6 +2216,7 @@
 
         function updateStandingsBoard() {
             const board = document.getElementById('live-standings-board');
+            if (!board) return;
             const sorted = [...drivers].sort((a, b) => (a.finished && b.finished) ? a.finishTime - b.finishTime : a.finished ? -1 : b.finished ? 1 : b.progress - a.progress);
             board.innerHTML = sorted.slice(0, 5).map((d, idx) => `
                 <div class="flex items-center justify-between bg-black/50 px-2.5 py-1.5 rounded border border-white/5">
@@ -2320,7 +2360,12 @@
             document.getElementById('top-speed-hud').textContent = '0 KM/H';
             document.getElementById('race-status-text').textContent = 'PARRILLA ABIERTA - ESPERANDO PILOTOS';
             for (let i = 1; i <= 5; i++) document.getElementById(`light-${i}`).classList.remove('red-on', 'green-on');
-            drivers.forEach(d => { d.progress = 0; d.finished = false; d.finishTime: null, boosting: false });
+            drivers.forEach(d => {
+                d.progress = 0;
+                d.finished = false;
+                d.finishTime = null;
+                d.boosting = false;
+            });
             if (reRender) renderAll();
         }
 
