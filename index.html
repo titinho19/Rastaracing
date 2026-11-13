@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RASTA RACING | Hub Oficial, Setup, Reviews, Campeonato LMU & Sorteos</title>
-    <!-- Tailwind CSS -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>RASTA RACING | Hub Oficial, Setup, Reviews, Campeonato LMU &amp; Sorteos</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:ital,wght@0,500;0,700;0,900;1,800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Orbitron & Rajdhani) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
         :root {
@@ -205,12 +208,12 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-    <!-- ================= BARRA SUPERIOR FIJA (HEADER + MENÚ DE 3 APPS) ================= -->
+    <!-- ================= BARRA SUPERIOR FIJA (HEADER + MENÚ DE 4 APPS) ================= -->
     <header class="sticky top-0 z-50 bg-[#060608]/95 backdrop-blur-md border-b border-[#FFD000]/30 shadow-[0_4px_30px_rgba(0,0,0,0.9)]">
         <div class="max-w-[1600px] mx-auto px-4">
             <div class="flex flex-wrap items-center justify-between py-2.5 gap-4">
                 
-                <!-- Identidad Visual Rasta Racing (Paleta Amarilla/Negra Oficial) -->
+                <!-- Identidad Visual Rasta Racing -->
                 <div class="flex items-center gap-3 cursor-pointer" onclick="switchMainView('hub')">
                     <div class="w-11 h-11 rounded-xl bg-gradient-to-b from-[#FFE666] to-[#E59800] p-[2px] shadow-[0_0_20px_rgba(255,208,0,0.4)]">
                         <div class="w-full h-full bg-[#060608] rounded-[10px] flex items-center justify-center">
@@ -227,23 +230,27 @@
                             <span class="font-hud font-black text-2xl tracking-wider text-[#FFF4B8]">RASTA</span>
                             <span class="font-hud font-bold text-lg tracking-widest text-[#FFD000]">RACING</span>
                         </div>
-                        <p class="text-[11px] text-gray-400 uppercase tracking-widest -mt-1">Portal Oficial & Simracing Hub</p>
+                        <p class="text-[11px] text-gray-400 uppercase tracking-widest -mt-1">Portal Oficial &amp; Simracing Hub</p>
                     </div>
                 </div>
 
-                <!-- Navegación Central (Las 3 Webs en 1) -->
+                <!-- Navegación Central (Las 4 Secciones en 1) -->
                 <nav class="flex items-center gap-1 sm:gap-2 overflow-x-auto">
-                    <button id="tab-btn-hub" onclick="switchMainView('hub')" class="nav-tab active px-4 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 cursor-pointer">
+                    <button id="tab-btn-hub" onclick="switchMainView('hub')" class="nav-tab active px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 cursor-pointer shrink-0">
                         <i class="fa-solid fa-sliders"></i>
-                        <span>Hub Oficial, Setup & Reviews</span>
+                        <span>Hub &amp; Reviews</span>
                     </button>
-                    <button id="tab-btn-championship" onclick="switchMainView('championship')" class="nav-tab px-4 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer">
+                    <button id="tab-btn-championship" onclick="switchMainView('championship')" class="nav-tab px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer shrink-0">
                         <i class="fa-solid fa-trophy text-[#FFD000]"></i>
-                        <span>Campeonato LMU (10 Fechas)</span>
+                        <span>Campeonato LMU</span>
                     </button>
-                    <button id="tab-btn-giveaway" onclick="switchMainView('giveaway')" class="nav-tab px-4 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer">
+                    <button id="tab-btn-setups" onclick="switchMainView('setups')" class="nav-tab px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer shrink-0">
+                        <i class="fa-solid fa-wrench text-[#FFD000]"></i>
+                        <span>Setups LMU</span>
+                    </button>
+                    <button id="tab-btn-giveaway" onclick="switchMainView('giveaway')" class="nav-tab px-3.5 py-2.5 font-hud font-bold text-xs sm:text-sm uppercase tracking-wider text-gray-300 hover:text-white flex items-center gap-2 cursor-pointer shrink-0">
                         <i class="fa-solid fa-flag-checkered text-[#FFD000]"></i>
-                        <span>Carrera Sorteos Live</span>
+                        <span>Sorteos Live</span>
                     </button>
                 </nav>
 
@@ -273,23 +280,21 @@
     <!-- ========================================================================================= -->
     <div id="view-hub" class="max-w-[1600px] w-full mx-auto px-4 py-8 space-y-14">
 
-        <!-- HERO BANNER CON LA ESTÉTICA EXACTA DEL LOGO RASTA RACING -->
+        <!-- HERO BANNER -->
         <section class="gold-panel rounded-3xl p-6 sm:p-10 relative overflow-hidden border-2 border-[#FFD000]/40">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
                 
-                <!-- Texto Principal y Accesos -->
                 <div class="lg:col-span-7 space-y-5">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFD000]/15 border border-[#FFD000]/50 text-[#FFD000] font-hud text-xs font-bold uppercase tracking-widest">
-                        <i class="fa-solid fa-bolt"></i> Creador de Contenido & Simracer Oficial
+                        <i class="fa-solid fa-bolt"></i> Creador de Contenido &amp; Simracer Oficial
                     </div>
                     <h1 class="font-hud font-black text-4xl sm:text-6xl uppercase leading-none tracking-tight">
                         <span class="text-[#FFF4B8]">RASTA</span> <span class="text-[#FFD000] drop-shadow-[0_0_25px_rgba(255,208,0,0.4)]">RACING</span>
                     </h1>
                     <p class="text-gray-300 text-base sm:text-lg max-w-2xl leading-relaxed">
-                        Bienvenidos a la casa oficial de <strong>Rasta Racing</strong>. Competición de alto nivel en <em>Le Mans Ultimate</em> e <em>iRacing</em>, análisis técnicos a fondo del hardware más extremo del mercado, campeonatos para la comunidad y eventos en directo.
+                        Bienvenidos a la casa oficial de <strong>Rasta Racing</strong>. Competición de alto nivel en <em>Le Mans Ultimate</em> e <em>iRacing</em>, análisis técnicos a fondo del hardware más extremo del mercado, setups de la comunidad, campeonatos y eventos en directo.
                     </p>
 
-                    <!-- Botonera de Redes y Secciones -->
                     <div class="flex flex-wrap items-center gap-3 pt-2">
                         <a href="https://www.twitch.tv/rastaracing" target="_blank" class="px-5 py-3 rounded-xl bg-[#9146ff] hover:bg-[#7d2df0] text-white font-hud font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg transition">
                             <i class="fa-brands fa-twitch text-base"></i> Seguir en Twitch
@@ -305,32 +310,34 @@
                         </a>
                     </div>
 
-                    <!-- Accesos rápidos a las herramientas interactivas -->
                     <div class="pt-3 flex flex-wrap gap-3 border-t border-white/10">
                         <button onclick="switchMainView('championship')" class="px-4 py-2 rounded-lg bg-[#FFD000] hover:bg-[#e5ba00] text-black font-hud font-black text-xs uppercase tracking-wider transition cursor-pointer">
-                            <i class="fa-solid fa-trophy mr-1"></i> Ir al Campeonato LMU (Inscripciones)
+                            <i class="fa-solid fa-trophy mr-1"></i> Ir al Campeonato LMU
                         </button>
-                        <button onclick="switchMainView('giveaway')" class="px-4 py-2 rounded-lg bg-[#FFD000]/15 hover:bg-[#FFD000]/25 border border-[#FFD000] text-[#FFD000] font-hud font-bold text-xs uppercase tracking-wider transition cursor-pointer">
-                            <i class="fa-solid fa-flag-checkered mr-1"></i> Abrir Simulador de Sorteos
+                        <button onclick="switchMainView('setups')" class="px-4 py-2 rounded-lg bg-[#FFD000]/15 hover:bg-[#FFD000]/25 border border-[#FFD000] text-[#FFD000] font-hud font-bold text-xs uppercase tracking-wider transition cursor-pointer">
+                            <i class="fa-solid fa-wrench mr-1"></i> Descargar &amp; Subir Setups LMU
+                        </button>
+                        <button onclick="switchMainView('giveaway')" class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-hud font-bold text-xs uppercase tracking-wider transition cursor-pointer">
+                            <i class="fa-solid fa-flag-checkered mr-1 text-[#FFD000]"></i> Simulador de Sorteos
                         </button>
                     </div>
                 </div>
 
-                <!-- Emblema Visual Rasta Racing (Sol Retro + Silueta GT Negra/Amarilla) -->
+                <!-- Emblema Visual Rasta Racing -->
                 <div class="lg:col-span-5 flex flex-col items-center justify-center relative py-4">
                     <div class="retro-sun flex items-center justify-center relative"></div>
                     <div class="-mt-36 relative z-10 text-center">
                         <svg width="310" height="115" viewBox="0 0 320 120" class="drop-shadow-[0_12px_25px_rgba(0,0,0,0.95)]">
-                            <path d="M22 48 L48 48 L54 68 L28 68 Z" fill="#070709" stroke="#FFD000" stroke-width="2.5"/>
-                            <path d="M20 75 L58 46 L145 36 L225 52 L298 72 L292 96 L20 96 Z" fill="#070709" stroke="#FFD000" stroke-width="2.5"/>
-                            <path d="M52 66 L128 84 L128 89 L50 71 Z" fill="#FFD000"/>
-                            <path d="M56 75 L128 91 L128 95 L54 79 Z" fill="#E59800"/>
-                            <path d="M98 44 L195 44 L218 60 L82 60 Z" fill="#111116" stroke="#FFD000" stroke-width="1.5"/>
-                            <path d="M258 68 L288 73 L266 79 Z" fill="#FFF4B8"/>
-                            <circle cx="76" cy="92" r="21" fill="#050507" stroke="#FFD000" stroke-width="4.5"/>
-                            <circle cx="76" cy="92" r="7" fill="#E59800"/>
-                            <circle cx="236" cy="92" r="21" fill="#050507" stroke="#FFD000" stroke-width="4.5"/>
-                            <circle cx="236" cy="92" r="7" fill="#E59800"/>
+                            <path d="M22 48 L48 48 L54 68 L28 68 Z" fill="#070709" stroke="#FFD000" stroke-width="2.5"></path>
+                            <path d="M20 75 L58 46 L145 36 L225 52 L298 72 L292 96 L20 96 Z" fill="#070709" stroke="#FFD000" stroke-width="2.5"></path>
+                            <path d="M52 66 L128 84 L128 89 L50 71 Z" fill="#FFD000"></path>
+                            <path d="M56 75 L128 91 L128 95 L54 79 Z" fill="#E59800"></path>
+                            <path d="M98 44 L195 44 L218 60 L82 60 Z" fill="#111116" stroke="#FFD000" stroke-width="1.5"></path>
+                            <path d="M258 68 L288 73 L266 79 Z" fill="#FFF4B8"></path>
+                            <circle cx="76" cy="92" r="21" fill="#050507" stroke="#FFD000" stroke-width="4.5"></circle>
+                            <circle cx="76" cy="92" r="7" fill="#E59800"></circle>
+                            <circle cx="236" cy="92" r="21" fill="#050507" stroke="#FFD000" stroke-width="4.5"></circle>
+                            <circle cx="236" cy="92" r="7" fill="#E59800"></circle>
                         </svg>
                         <div class="mt-2">
                             <div class="font-hud font-black text-3xl tracking-widest text-[#FFF4B8]">RASTA</div>
@@ -348,15 +355,13 @@
                 <div>
                     <span class="text-xs font-hud uppercase tracking-widest text-[#FFD000] font-bold">MARCAS QUE APOYAN EL PROYECTO</span>
                     <h2 class="font-hud font-black text-2xl sm:text-3xl uppercase text-white mt-1">
-                        COLABORADORES & <span class="text-[#FFD000]">PARTNERS OFICIALES</span>
+                        COLABORADORES &amp; <span class="text-[#FFD000]">PARTNERS OFICIALES</span>
                     </h2>
                 </div>
                 <p class="text-xs text-gray-400">Haz clic en cualquier marca para visitar su tienda oficial con referencia del canal</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                
-                <!-- 1. NJ Motion -->
                 <a href="https://njmotion.com/" target="_blank" class="gold-panel rounded-2xl p-5 flex flex-col justify-between group hover:-translate-y-1">
                     <div>
                         <div class="flex items-center justify-between mb-3">
@@ -372,7 +377,6 @@
                     </div>
                 </a>
 
-                <!-- 2. Ascher Racing -->
                 <a href="https://ascher-racing.com/int/" target="_blank" class="gold-panel rounded-2xl p-5 flex flex-col justify-between group hover:-translate-y-1">
                     <div>
                         <div class="flex items-center justify-between mb-3">
@@ -388,7 +392,6 @@
                     </div>
                 </a>
 
-                <!-- 3. Le Premium Box -->
                 <a href="https://lepremiumbox.com/" target="_blank" class="gold-panel rounded-2xl p-5 flex flex-col justify-between group hover:-translate-y-1">
                     <div>
                         <div class="flex items-center justify-between mb-3">
@@ -404,11 +407,10 @@
                     </div>
                 </a>
 
-                <!-- 4. AdrenaSim -->
                 <a href="https://www.adrenasim.com/" target="_blank" class="gold-panel rounded-2xl p-5 flex flex-col justify-between group hover:-translate-y-1">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="px-2.5 py-1 rounded bg-[#FFD000]/15 text-[#FFD000] font-hud font-bold text-[11px]">COCKPITS & ACCESORIOS</span>
+                            <span class="px-2.5 py-1 rounded bg-[#FFD000]/15 text-[#FFD000] font-hud font-bold text-[11px]">COCKPITS &amp; ACCESORIOS</span>
                             <i class="fa-solid fa-flag-checkered text-xl text-[#FFD000] group-hover:scale-110 transition"></i>
                         </div>
                         <h3 class="font-hud font-black text-xl text-white mb-1">ADRENASIM</h3>
@@ -420,11 +422,10 @@
                     </div>
                 </a>
 
-                <!-- 5. Instant Gaming -->
                 <a href="https://www.instant-gaming.com/?igr=rastaig" target="_blank" class="gold-panel rounded-2xl p-5 flex flex-col justify-between group hover:-translate-y-1">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="px-2.5 py-1 rounded bg-[#ff5400]/20 text-[#ff7733] font-hud font-bold text-[11px]">JUEGOS & DLCs</span>
+                            <span class="px-2.5 py-1 rounded bg-[#ff5400]/20 text-[#ff7733] font-hud font-bold text-[11px]">JUEGOS &amp; DLCs</span>
                             <i class="fa-solid fa-gamepad text-xl text-[#ff5400] group-hover:scale-110 transition"></i>
                         </div>
                         <h3 class="font-hud font-black text-xl text-white mb-1">INSTANT GAMING</h3>
@@ -436,14 +437,13 @@
                     </div>
                 </a>
 
-                <!-- 6. The French Sim Racer & iRacing Referido -->
                 <div class="gold-panel rounded-2xl p-5 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-3">
-                            <span class="px-2.5 py-1 rounded bg-[#FFD000]/15 text-[#FFD000] font-hud font-bold text-[11px]">AFILIADOS & REFERIDOS</span>
+                            <span class="px-2.5 py-1 rounded bg-[#FFD000]/15 text-[#FFD000] font-hud font-bold text-[11px]">AFILIADOS &amp; REFERIDOS</span>
                             <i class="fa-solid fa-handshake text-xl text-[#FFD000]"></i>
                         </div>
-                        <h3 class="font-hud font-black text-lg text-white mb-1">THE FRENCH SIM RACER & iRACING</h3>
+                        <h3 class="font-hud font-black text-lg text-white mb-1">THE FRENCH SIM RACER &amp; iRACING</h3>
                         <p class="text-xs text-gray-300 mb-2">Usa nuestro enlace en The French Sim Racer o pon nuestro correo al darte de alta en iRacing:</p>
                         <div class="flex items-center justify-between bg-black/70 border border-[#FFD000]/30 rounded-lg px-2.5 py-1.5 mb-3">
                             <code class="text-xs text-[#FFD000] font-bold">rastaracing83@gmail.com</code>
@@ -461,11 +461,10 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- ================= SECCIÓN VÍDEOS & REVIEWS OFICIALES DE YOUTUBE ================= -->
+        <!-- ================= SECCIÓN VÍDEOS & REVIEWS OFICIALES DE YOUTUBE (CORREGIDA) ================= -->
         <section id="reviews-youtube" class="gold-panel rounded-3xl p-6 sm:p-8 border border-[#FFD000]/30">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
                 <div>
@@ -473,7 +472,7 @@
                         <i class="fa-brands fa-youtube text-red-500 text-base"></i> LISTA DE REPRODUCCIÓN OFICIAL: REVIEW
                     </span>
                     <h2 class="font-hud font-black text-2xl sm:text-3xl uppercase text-white mt-1">
-                        REVIEWS TÉCNICAS & <span class="text-[#FFD000]">TESTS EN EL CANAL</span>
+                        REVIEWS TÉCNICAS &amp; <span class="text-[#FFD000]">TESTS EN EL CANAL</span>
                     </h2>
                 </div>
                 <a href="https://www.youtube.com/@rastaracing_oficial/playlists" target="_blank" class="px-4 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-hud font-bold text-xs uppercase tracking-wider flex items-center gap-2 self-start md:self-auto transition">
@@ -482,19 +481,20 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                <!-- Reproductor Principal Incrustado -->
+                <!-- Reproductor Principal Incrustado (Con youtube-nocookie y referrerpolicy) -->
                 <div class="lg:col-span-8">
                     <div class="relative w-full aspect-video rounded-2xl overflow-hidden border-2 border-[#FFD000]/50 shadow-[0_0_35px_rgba(255,208,0,0.15)] bg-black">
-                        <iframe id="main-youtube-iframe" class="w-full h-full" src="https://www.youtube.com/embed/65TLntsXb_c" title="Rasta Racing YouTube Review Player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe id="main-youtube-iframe" class="w-full h-full" src="https://www.youtube-nocookie.com/embed/65TLntsXb_c?rel=0" title="Rasta Racing YouTube Review Player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                     <div class="mt-3 flex flex-wrap items-center justify-between gap-2 bg-black/50 p-3.5 rounded-xl border border-white/10">
                         <div>
                             <span class="text-[10px] font-hud uppercase px-2 py-0.5 rounded bg-[#FFD000] text-black font-bold">REPRODUCIENDO AHORA</span>
                             <h3 id="current-video-title" class="font-hud font-bold text-base sm:text-lg text-white mt-1">REVIEW NJ MOTION COMPACT EVO</h3>
                         </div>
-                        <a id="current-video-link" href="http://www.youtube.com/watch?v=65TLntsXb_c" target="_blank" class="text-xs font-hud font-bold text-[#FFD000] hover:underline flex items-center gap-1.5">
-                            <span>Abrir en YouTube</span>
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <a id="current-video-link" href="https://www.youtube.com/watch?v=65TLntsXb_c" target="_blank" class="px-3.5 py-2 rounded-lg bg-red-600/20 hover:bg-red-600 border border-red-500/40 text-xs font-hud font-bold text-white transition flex items-center gap-1.5">
+                            <i class="fa-brands fa-youtube text-red-400"></i>
+                            <span>Ver en YouTube Directo</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
                     </div>
                 </div>
@@ -559,19 +559,18 @@
             <div class="mb-6">
                 <span class="text-xs font-hud uppercase tracking-widest text-[#FFD000] font-bold">FICHA TÉCNICA COMPLETA DEL SIMROOM</span>
                 <h2 class="font-hud font-black text-2xl sm:text-3xl uppercase text-white mt-1">
-                    MI HARDWARE, COCKPIT & <span class="text-[#FFD000]">SETUP DE STREAMING</span>
+                    MI HARDWARE, COCKPIT &amp; <span class="text-[#FFD000]">SETUP DE STREAMING</span>
                 </h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                <!-- Columna 1: Fuerza, Pedales, Motion & Chasis -->
                 <div class="gold-panel rounded-2xl p-5 border-t-4 border-t-[#FFD000]">
                     <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
                         <div class="w-10 h-10 rounded-xl bg-[#FFD000]/15 border border-[#FFD000]/40 flex items-center justify-center text-[#FFD000]">
                             <i class="fa-solid fa-gauge-high text-lg"></i>
                         </div>
                         <div>
-                            <h3 class="font-hud font-bold text-sm text-white uppercase">BASE, PEDALES & MOTION</h3>
+                            <h3 class="font-hud font-bold text-sm text-white uppercase">BASE, PEDALES &amp; MOTION</h3>
                             <p class="text-xs text-gray-400">Núcleo del Simulador</p>
                         </div>
                     </div>
@@ -599,7 +598,6 @@
                     </ul>
                 </div>
 
-                <!-- Columna 2: Colección de Aros / Volantes -->
                 <div class="gold-panel rounded-2xl p-5 border-t-4 border-t-[#E59800]">
                     <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
                         <div class="w-10 h-10 rounded-xl bg-[#FFD000]/15 border border-[#FFD000]/40 flex items-center justify-center text-[#FFD000]">
@@ -638,14 +636,13 @@
                     </ul>
                 </div>
 
-                <!-- Columna 3: Periféricos, Cambios, Imagen y Sonido -->
                 <div class="gold-panel rounded-2xl p-5 border-t-4 border-t-[#FFD000]">
                     <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
                         <div class="w-10 h-10 rounded-xl bg-[#FFD000]/15 border border-[#FFD000]/40 flex items-center justify-center text-[#FFD000]">
                             <i class="fa-solid fa-tv text-lg"></i>
                         </div>
                         <div>
-                            <h3 class="font-hud font-bold text-sm text-white uppercase">PERIFÉRICOS, MONITOR & AUDIO</h3>
+                            <h3 class="font-hud font-bold text-sm text-white uppercase">PERIFÉRICOS, MONITOR &amp; AUDIO</h3>
                             <p class="text-xs text-gray-400">Telemetría e Inmersión</p>
                         </div>
                     </div>
@@ -655,32 +652,31 @@
                             <strong class="text-white">Samsung OLED G9 Ultrawide 49"</strong>
                         </li>
                         <li class="bg-black/50 p-2.5 rounded-lg border border-white/5">
-                            <span class="text-[10px] font-hud text-[#FFD000] uppercase block">Cambios (H-Pattern & Secuencial)</span>
+                            <span class="text-[10px] font-hud text-[#FFD000] uppercase block">Cambios (H-Pattern &amp; Secuencial)</span>
                             <strong class="text-white">Simagic DS-8X + Secuencial BJ Simracing</strong>
                         </li>
                         <li class="bg-black/50 p-2.5 rounded-lg border border-white/5">
-                            <span class="text-[10px] font-hud text-[#FFD000] uppercase block">Botonera & Dashboard</span>
+                            <span class="text-[10px] font-hud text-[#FFD000] uppercase block">Botonera &amp; Dashboard</span>
                             <strong class="text-white">SimDid D30 + Dashboard SimDid DV480</strong>
                         </li>
                         <li class="bg-black/50 p-2.5 rounded-lg border border-white/5">
-                            <span class="text-[10px] font-hud text-[#FFD000] uppercase block">Sonido & Auriculares</span>
+                            <span class="text-[10px] font-hud text-[#FFD000] uppercase block">Sonido &amp; Auriculares</span>
                             <strong class="text-white">Onkyo 7.1 Envolvente + Audio-Technica MSR7b</strong>
                         </li>
                         <li class="bg-black/50 p-2.5 rounded-lg border border-white/5">
                             <span class="text-[10px] font-hud text-[#FFD000] uppercase block">Consolas Next-Gen</span>
-                            <strong class="text-white">PlayStation 5 & Xbox Series X</strong>
+                            <strong class="text-white">PlayStation 5 &amp; Xbox Series X</strong>
                         </li>
                     </ul>
                 </div>
 
-                <!-- Columna 4: PC Master Race & Cámaras de Stream -->
                 <div class="gold-panel rounded-2xl p-5 border-t-4 border-t-[#E59800]">
                     <div class="flex items-center gap-3 mb-4 pb-3 border-b border-white/10">
                         <div class="w-10 h-10 rounded-xl bg-[#FFD000]/15 border border-[#FFD000]/40 flex items-center justify-center text-[#FFD000]">
                             <i class="fa-solid fa-server text-lg"></i>
                         </div>
                         <div>
-                            <h3 class="font-hud font-bold text-sm text-white uppercase">PC EXTREMO & CÁMARAS</h3>
+                            <h3 class="font-hud font-bold text-sm text-white uppercase">PC EXTREMO &amp; CÁMARAS</h3>
                             <p class="text-xs text-gray-400">Potencia para Streaming 4K</p>
                         </div>
                     </div>
@@ -694,7 +690,7 @@
                             <strong class="text-white">AMD Ryzen 9 7900X3D</strong>
                         </li>
                         <li class="bg-black/50 p-2.5 rounded-lg border border-white/5">
-                            <span class="text-[10px] font-hud text-[#FFD000] uppercase block">Memoria RAM & Placa Base</span>
+                            <span class="text-[10px] font-hud text-[#FFD000] uppercase block">Memoria RAM &amp; Placa Base</span>
                             <strong class="text-white">64GB Corsair Vengeance 6000MHz + ASUS TUF X670 Elite</strong>
                         </li>
                         <li class="bg-black/50 p-2.5 rounded-lg border border-white/5">
@@ -713,11 +709,11 @@
     </div>
 
     <!-- ========================================================================================= -->
-    <!-- VISTA 2: CAMPEONATO LMU COMPLETO (VERSIÓN PRO: GARAJE, CUPOS, MODAL DE CIRCUITOS, SHEETDB)-->
+    <!-- VISTA 2: CAMPEONATO LMU COMPLETO (CON LAS 5 CATEGORÍAS OFICIALES Y CALENDARIO)            -->
     <!-- ========================================================================================= -->
     <div id="view-championship" class="hidden max-w-[1600px] w-full mx-auto px-4 py-8 space-y-12">
 
-        <!-- HERO DEL CAMPEONATO CON CONTADORES DE PLAZAS HYPERCAR Y LMGT3 EN VIVO -->
+        <!-- HERO DEL CAMPEONATO -->
         <section class="gold-panel rounded-3xl p-6 sm:p-10 border-2 border-[#FFD000]/40 relative overflow-hidden">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-7 space-y-4">
@@ -733,19 +729,19 @@
                         RASTA RACING <span class="text-[#FFD000]">LMU ENDURANCE CUP</span>
                     </h2>
                     <p class="text-gray-300 text-base leading-relaxed">
-                        Campeonato multicategoría en <strong>Le Mans Ultimate</strong> con formato de 10 carreras todos los fines de semana. Elige tu prototipo <strong>Hypercar</strong> o tu <strong>LMGT3</strong>, registra tu dorsal oficial y compite en directo con gestión de comisarios, meteorología dinámica y puntuación oficial FIA WEC.
+                        Campeonato multicategoría en <strong>Le Mans Ultimate</strong>. Explora las 5 categorías oficiales del juego (<strong>Hypercar, LMP2, LMP3, LMGT3 y GTE</strong>), registra tu dorsal oficial y compite en directo con gestión de comisarios y meteorología dinámica.
                     </p>
                     <div class="flex flex-wrap gap-3 pt-2">
                         <a href="#form-inscripcion-lmu" class="px-6 py-3.5 rounded-xl bg-[#FFD000] hover:bg-[#e5ba00] text-black font-hud font-black text-xs sm:text-sm uppercase tracking-wider transition shadow-[0_0_25px_rgba(255,208,0,0.4)]">
                             <i class="fa-solid fa-pen-to-square mr-1.5"></i> Inscribir Piloto Ahora
                         </a>
                         <a href="#garaje-lmu" class="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-hud font-bold text-xs sm:text-sm uppercase tracking-wider transition">
-                            <i class="fa-solid fa-car-rear mr-1.5 text-[#FFD000]"></i> Explorar Coches (Hypercar / GT3)
+                            <i class="fa-solid fa-car-rear mr-1.5 text-[#FFD000]"></i> Explorar las 5 Categorías LMU
                         </a>
                     </div>
                 </div>
 
-                <!-- Panel de Telemetría de Cupos de Parrilla (38 Coches máx) -->
+                <!-- Panel de Telemetría de Cupos de Parrilla -->
                 <div class="lg:col-span-5 bg-black/70 rounded-2xl p-6 border border-[#FFD000]/30 space-y-4">
                     <div class="flex items-center justify-between border-b border-white/10 pb-3">
                         <div>
@@ -755,10 +751,9 @@
                         <span id="champ-total-drivers" class="font-hud font-black text-2xl text-[#FFD000]">0 / 38</span>
                     </div>
 
-                    <!-- Barra Hypercar -->
                     <div>
                         <div class="flex justify-between text-xs font-hud font-bold mb-1">
-                            <span class="text-red-400"><i class="fa-solid fa-bolt mr-1"></i> CATEGORÍA HYPERCAR</span>
+                            <span class="text-red-400"><i class="fa-solid fa-bolt mr-1"></i> PROTOTIPOS (HYPERCAR / LMP2 / LMP3)</span>
                             <span id="slots-hypercar-text" class="text-white">0 / 18 Plazas</span>
                         </div>
                         <div class="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
@@ -766,10 +761,9 @@
                         </div>
                     </div>
 
-                    <!-- Barra LMGT3 -->
                     <div>
                         <div class="flex justify-between text-xs font-hud font-bold mb-1">
-                            <span class="text-[#FFD000]"><i class="fa-solid fa-flag-checkered mr-1"></i> CATEGORÍA LMGT3</span>
+                            <span class="text-[#FFD000]"><i class="fa-solid fa-flag-checkered mr-1"></i> TURISMOS GT (LMGT3 / GTE)</span>
                             <span id="slots-gt3-text" class="text-white">0 / 20 Plazas</span>
                         </div>
                         <div class="w-full h-2.5 bg-white/10 rounded-full overflow-hidden">
@@ -779,12 +773,12 @@
 
                     <div class="grid grid-cols-3 gap-2 pt-2 text-center">
                         <div class="bg-white/5 rounded-xl p-2 border border-white/5">
-                            <span class="font-hud font-black text-lg text-[#FFD000] block">10</span>
-                            <span class="text-[10px] text-gray-400 uppercase">Carreras</span>
+                            <span class="font-hud font-black text-lg text-[#FFD000] block">5</span>
+                            <span class="text-[10px] text-gray-400 uppercase">Categorías</span>
                         </div>
                         <div class="bg-white/5 rounded-xl p-2 border border-white/5">
-                            <span class="font-hud font-black text-lg text-[#FFF4B8] block">x2 Pts</span>
-                            <span class="text-[10px] text-gray-400 uppercase">2.4h Le Mans</span>
+                            <span class="font-hud font-black text-lg text-[#FFF4B8] block">18</span>
+                            <span class="text-[10px] text-gray-400 uppercase">Circuitos LMU</span>
                         </div>
                         <div class="bg-white/5 rounded-xl p-2 border border-white/5">
                             <span class="font-hud font-black text-lg text-[#9146ff] block">LIVE</span>
@@ -795,31 +789,38 @@
             </div>
         </section>
 
-        <!-- SELECTOR INTERACTIVO DE CATEGORÍAS Y COCHES (GARAJE OFICIAL LMU) -->
+        <!-- SELECTOR INTERACTIVO DE LAS 5 CATEGORÍAS Y COCHES (GARAJE OFICIAL LMU 2026) -->
         <section id="garaje-lmu" class="space-y-5">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                 <div>
-                    <span class="text-xs font-hud uppercase tracking-widest text-[#FFD000] font-bold">SELECCIONA TU MONTURA Y PASA DIRECTO AL FORMULARIO</span>
+                    <span class="text-xs font-hud uppercase tracking-widest text-[#FFD000] font-bold">LISTA OFICIAL DE COCHES LE MANS ULTIMATE (2026)</span>
                     <h3 class="font-hud font-black text-2xl sm:text-3xl uppercase text-white mt-1">
-                        GARAJE OFICIAL <span class="text-[#FFD000]">HYPERCAR & LMGT3</span>
+                        GARAJE OFICIAL <span class="text-[#FFD000]">5 CATEGORÍAS WEC &amp; ELMS</span>
                     </h3>
                 </div>
-                <div class="flex gap-2">
-                    <button id="btn-garage-hyper" onclick="renderGarageCars('HYPERCAR')" class="px-5 py-2.5 rounded-xl font-hud font-black text-xs uppercase tracking-wider bg-[#FFD000] text-black transition cursor-pointer">
-                        Prototipos Hypercar (8)
+                <div class="flex flex-wrap gap-2">
+                    <button id="btn-garage-HYPERCAR" onclick="renderGarageCars('HYPERCAR')" class="px-4 py-2 rounded-xl font-hud font-black text-xs uppercase tracking-wider bg-[#FFD000] text-black transition cursor-pointer">
+                        Hypercar (15)
                     </button>
-                    <button id="btn-garage-gt3" onclick="renderGarageCars('LMGT3')" class="px-5 py-2.5 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
-                        Turismos LMGT3 (8)
+                    <button id="btn-garage-LMP2" onclick="renderGarageCars('LMP2')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
+                        LMP2 (2)
+                    </button>
+                    <button id="btn-garage-LMP3" onclick="renderGarageCars('LMP3')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
+                        LMP3 (4)
+                    </button>
+                    <button id="btn-garage-LMGT3" onclick="renderGarageCars('LMGT3')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
+                        LMGT3 (10)
+                    </button>
+                    <button id="btn-garage-GTE" onclick="renderGarageCars('GTE')" class="px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer">
+                        GTE 2023 (4)
                     </button>
                 </div>
             </div>
 
-            <div id="garage-cars-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- Generado dinámicamente por JS -->
-            </div>
+            <div id="garage-cars-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
         </section>
 
-        <!-- CALENDARIO INTERACTIVO DE 10 CARRERAS (CON MODAL DE HORARIOS Y FORMATO) -->
+        <!-- CALENDARIO INTERACTIVO DE 10 CARRERAS -->
         <section class="space-y-5">
             <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
                 <div>
@@ -831,9 +832,7 @@
                 <span class="text-xs text-gray-400"><i class="fa-solid fa-circle-info text-[#FFD000] mr-1"></i>Puntuación doble en la Ronda 4 (2.4h Le Mans) y Ronda 10 (Sebring)</span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4" id="calendar-grid">
-                <!-- Generado dinámicamente por JS -->
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4" id="calendar-grid"></div>
         </section>
 
         <!-- FORMULARIO COMPLETO DE INSCRIPCIÓN + VERIFICADOR DE DORSAL + TABLA CON FILTROS -->
@@ -852,38 +851,35 @@
                     <div class="grid grid-cols-3 gap-3">
                         <div class="col-span-1">
                             <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Dorsal (1-999)</label>
-                            <input type="number" id="reg-dorsal" min="1" max="999" required value="83" oninput="updateLiveNumberplate()"
-                                class="w-full bg-black/80 border border-white/20 rounded-xl px-3 py-2.5 text-white font-hud font-bold focus:outline-none focus:border-[#FFD000]">
-                            <span id="dorsal-status-msg" class="text-[10px] font-bold text-[#FFD000] block mt-1">✓ Dorsal libre</span>
+                            <input type="number" id="reg-dorsal" min="1" max="999" required="" value="83" oninput="updateLiveNumberplate()" class="w-full bg-black/80 border border-white/20 rounded-xl px-3 py-2.5 text-white font-hud font-bold focus:outline-none focus:border-[#FFD000]">
+                            <span id="dorsal-status-msg" class="text-[10px] font-bold text-[#FFD000] block mt-1">✓ Dorsal disponible</span>
                         </div>
                         <div class="col-span-2">
                             <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Nombre / Nick en LMU</label>
-                            <input type="text" id="reg-piloto" required placeholder="Ej: RastaDriver_ESP" oninput="updateLiveNumberplate()"
-                                class="w-full bg-black/80 border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#FFD000]">
+                            <input type="text" id="reg-piloto" required="" placeholder="Ej: RastaDriver_ESP" oninput="updateLiveNumberplate()" class="w-full bg-black/80 border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#FFD000]">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Usuario de Twitch</label>
-                            <input type="text" id="reg-twitch" required placeholder="@tu_nick_twitch"
-                                class="w-full bg-black/80 border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#FFD000]">
+                            <input type="text" id="reg-twitch" required="" placeholder="@tu_nick_twitch" class="w-full bg-black/80 border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#FFD000]">
                         </div>
                         <div>
-                            <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Categoría WEC</label>
-                            <select id="reg-clase" onchange="updateCarOptions(); updateLiveNumberplate();"
-                                class="w-full bg-black/80 border border-white/20 rounded-xl px-3 py-2.5 text-white font-bold focus:outline-none focus:border-[#FFD000]">
-                                <option value="HYPERCAR">HYPERCAR (Prototipos)</option>
+                            <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Categoría Oficial</label>
+                            <select id="reg-clase" onchange="updateCarOptions(); updateLiveNumberplate();" class="w-full bg-black/80 border border-white/20 rounded-xl px-3 py-2.5 text-white font-bold focus:outline-none focus:border-[#FFD000]">
+                                <option value="HYPERCAR">HYPERCAR (LMH / LMDh)</option>
+                                <option value="LMP2">LMP2 (WEC / ELMS)</option>
+                                <option value="LMP3">LMP3 (ELMS)</option>
                                 <option value="LMGT3">LMGT3 (Turismos GT)</option>
+                                <option value="GTE">GTE (Clásicos 2023)</option>
                             </select>
                         </div>
                     </div>
 
                     <div>
                         <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Coche Oficial Seleccionado</label>
-                        <select id="reg-coche" onchange="updateLiveNumberplate()"
-                            class="w-full bg-black/80 border border-white/20 rounded-xl px-3.5 py-2.5 text-white font-semibold focus:outline-none focus:border-[#FFD000]">
-                        </select>
+                        <select id="reg-coche" onchange="updateLiveNumberplate()" class="w-full bg-black/80 border border-white/20 rounded-xl px-3.5 py-2.5 text-white font-semibold focus:outline-none focus:border-[#FFD000]"></select>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
@@ -895,20 +891,8 @@
                             </select>
                         </div>
                         <div>
-                            <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Ronda Principal</label>
-                            <select id="reg-ronda" class="w-full bg-black/80 border border-white/20 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-[#FFD000]">
-                                <option value="Todas (R1-R10)">Todas las 10 Fechas</option>
-                                <option value="R1 - Qatar Lusail">R1 - Qatar Lusail</option>
-                                <option value="R2 - Imola">R2 - Imola</option>
-                                <option value="R3 - Spa-Francorchamps">R3 - Spa-Francorchamps</option>
-                                <option value="R4 - 2.4h Le Mans">R4 - 2.4h Le Mans</option>
-                                <option value="R5 - Interlagos">R5 - Interlagos</option>
-                                <option value="R6 - COTA Austin">R6 - COTA Austin</option>
-                                <option value="R7 - Fuji Speedway">R7 - Fuji Speedway</option>
-                                <option value="R8 - Bahrain">R8 - Bahrain</option>
-                                <option value="R9 - Monza">R9 - Monza</option>
-                                <option value="R10 - Sebring Final">R10 - Sebring Final</option>
-                            </select>
+                            <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Ronda / Circuito</label>
+                            <select id="reg-ronda" class="w-full bg-black/80 border border-white/20 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-[#FFD000]"></select>
                         </div>
                     </div>
 
@@ -944,17 +928,19 @@
                     </button>
                 </div>
 
-                <!-- Barra de Búsqueda y Filtros de Clase -->
+                <!-- Barra de Búsqueda y Filtros de las 5 Clases -->
                 <div class="flex flex-wrap items-center justify-between gap-3">
-                    <div class="flex gap-1.5">
-                        <button onclick="setEntryFilter('ALL')" id="filter-btn-ALL" class="px-3 py-1.5 rounded-lg font-hud text-xs font-bold bg-[#FFD000] text-black cursor-pointer">Todos</button>
-                        <button onclick="setEntryFilter('HYPERCAR')" id="filter-btn-HYPERCAR" class="px-3 py-1.5 rounded-lg font-hud text-xs font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">Hypercar</button>
-                        <button onclick="setEntryFilter('LMGT3')" id="filter-btn-LMGT3" class="px-3 py-1.5 rounded-lg font-hud text-xs font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">LMGT3</button>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="setEntryFilter('ALL')" id="filter-btn-ALL" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-[#FFD000] text-black cursor-pointer">Todos</button>
+                        <button onclick="setEntryFilter('HYPERCAR')" id="filter-btn-HYPERCAR" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">Hypercar</button>
+                        <button onclick="setEntryFilter('LMP2')" id="filter-btn-LMP2" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">LMP2</button>
+                        <button onclick="setEntryFilter('LMP3')" id="filter-btn-LMP3" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">LMP3</button>
+                        <button onclick="setEntryFilter('LMGT3')" id="filter-btn-LMGT3" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">LMGT3</button>
+                        <button onclick="setEntryFilter('GTE')" id="filter-btn-GTE" class="px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer">GTE</button>
                     </div>
                     <div class="relative flex-grow max-w-xs">
                         <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-500 text-xs"></i>
-                        <input type="text" id="entry-search-input" oninput="renderEntryListTable()" placeholder="Buscar piloto, coche o dorsal..."
-                            class="w-full bg-black/70 border border-white/15 rounded-xl pl-8 pr-3 py-1.5 text-xs text-white focus:outline-none focus:border-[#FFD000]">
+                        <input type="text" id="entry-search-input" oninput="renderEntryListTable()" placeholder="Buscar piloto, coche o dorsal..." class="w-full bg-black/70 border border-white/15 rounded-xl pl-8 pr-3 py-1.5 text-xs text-white focus:outline-none focus:border-[#FFD000]">
                     </div>
                 </div>
 
@@ -969,10 +955,164 @@
                                 <th class="py-2.5 px-2">Formato / Ronda</th>
                             </tr>
                         </thead>
-                        <tbody id="sheetdb-drivers-tbody" class="divide-y divide-white/5">
-                            <!-- Cargado dinámicamente -->
-                        </tbody>
+                        <tbody id="sheetdb-drivers-tbody" class="divide-y divide-white/5"></tbody>
                     </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================================================================= -->
+    <!-- VISTA 3: REPOSITORIO OFICIAL DE SETUPS LMU (5 CATEGORÍAS + 18 CIRCUITOS + SUPABASE)       -->
+    <!-- ========================================================================================= -->
+    <div id="view-setups" class="hidden max-w-[1600px] w-full mx-auto px-4 py-8 space-y-10">
+
+        <!-- HERO DE LA SECCIÓN DE SETUPS -->
+        <section class="gold-panel rounded-3xl p-6 sm:p-10 border-2 border-[#FFD000]/40 relative overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-8 space-y-4">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-3 py-1 rounded-full bg-[#FFD000] text-black font-hud text-xs font-black uppercase tracking-wider">
+                            <i class="fa-solid fa-wrench mr-1"></i> INGENIERÍA DE PISTA COMUNITARIA
+                        </span>
+                        <span class="px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[#FFF4B8] font-hud text-xs font-bold uppercase">
+                            5 CATEGORÍAS OFICIALES • 18 CIRCUITOS LMU 2026
+                        </span>
+                    </div>
+                    <h2 class="font-hud font-black text-3xl sm:text-5xl uppercase text-white leading-tight">
+                        RASTA RACING <span class="text-[#FFD000]">LMU SETUP HUB</span>
+                    </h2>
+                    <p class="text-gray-300 text-base leading-relaxed max-w-3xl">
+                        Comparte tus reglajes con la comunidad para cualquiera de las 5 clases oficiales (<strong>Hypercar, LMP2, LMP3, LMGT3 y GTE</strong>) en todos los trazados del juego base, WEC 2024, ELMS y US Track Pass. Descarga y vota los que mejor funcionen.
+                    </p>
+                </div>
+
+                <!-- Estadísticas en vivo del Hub de Setups -->
+                <div class="lg:col-span-4 grid grid-cols-2 gap-4">
+                    <div class="bg-black/70 rounded-2xl p-5 border border-[#FFD000]/30 text-center">
+                        <i class="fa-solid fa-file-code text-2xl text-[#FFD000] mb-1"></i>
+                        <span id="stat-total-setups" class="font-hud font-black text-3xl text-white block">0</span>
+                        <span class="text-[11px] font-hud uppercase text-gray-400">Setups Publicados</span>
+                    </div>
+                    <div class="bg-black/70 rounded-2xl p-5 border border-[#FFD000]/30 text-center">
+                        <i class="fa-solid fa-fire text-2xl text-[#E59800] mb-1"></i>
+                        <span id="stat-total-votes" class="font-hud font-black text-3xl text-[#FFD000] block">0</span>
+                        <span class="text-[11px] font-hud uppercase text-gray-400">Valoraciones Totales</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRID PRINCIPAL: FORMULARIO DE SUBIDA (IZQUIERDA) + BUSCADOR Y TARJETAS (DERECHA) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- COLUMNA IZQUIERDA: SUBIR NUEVO SETUP (.JSON / .SVM) -->
+            <div class="lg:col-span-4 gold-panel rounded-3xl p-6 sm:p-7 border-2 border-[#FFD000]/40">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="px-2.5 py-0.5 rounded bg-[#FFD000]/20 text-[#FFD000] font-hud text-[10px] font-bold uppercase">APORTAR A LA COMUNIDAD</span>
+                    <span class="text-xs text-gray-400"><i class="fa-solid fa-cloud-arrow-up text-[#FFD000] mr-1"></i>Supabase Cloud</span>
+                </div>
+                <h3 class="font-hud font-black text-2xl text-white uppercase mb-1">SUBIR TU SETUP</h3>
+                <p class="text-xs text-gray-400 mb-5">Sube tu archivo <code class="text-[#FFD000]">.svm</code> o <code class="text-[#FFD000]">.json</code> de Le Mans Ultimate y comparte tu tiempo de referencia.</p>
+
+                <form id="form-upload-setup" onsubmit="uploadSetupToSupabase(event)" class="space-y-4">
+                    <div>
+                        <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Piloto / Autor (Twitch o Discord)</label>
+                        <input type="text" id="setup-piloto" required placeholder="Ej: RastaRacing_83" class="w-full bg-black/80 border border-white/20 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-[#FFD000]">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Categoría Oficial</label>
+                            <select id="setup-categoria" onchange="populateSetupCarSelect()" class="w-full bg-black/80 border border-white/20 rounded-xl px-3 py-2.5 text-white font-bold focus:outline-none focus:border-[#FFD000]">
+                                <option value="LMGT3">LMGT3 (10 Coches)</option>
+                                <option value="HYPERCAR">HYPERCAR (15 Coches)</option>
+                                <option value="LMP2">LMP2 (WEC / ELMS)</option>
+                                <option value="LMP3">LMP3 (4 Coches)</option>
+                                <option value="GTE">GTE (Clásicos 2023)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Tiempo de Vuelta</label>
+                            <input type="text" id="setup-tiempo" placeholder="Ej: 1:42.350" class="w-full bg-black/80 border border-white/20 rounded-xl px-3.5 py-2.5 text-white font-mono focus:outline-none focus:border-[#FFD000]">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Modelo de Coche</label>
+                        <select id="setup-coche" required class="w-full bg-black/80 border border-white/20 rounded-xl px-3.5 py-2.5 text-white font-semibold focus:outline-none focus:border-[#FFD000]"></select>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Circuito Oficial LMU (Base + DLCs)</label>
+                        <select id="setup-circuito" required class="w-full bg-black/80 border border-white/20 rounded-xl px-3.5 py-2.5 text-white font-semibold focus:outline-none focus:border-[#FFD000]"></select>
+                    </div>
+
+                    <div>
+                        <label class="text-xs font-bold text-gray-300 uppercase block mb-1">Archivo de Setup (.svm / .json)</label>
+                        <input type="file" id="setup-archivo" accept=".json,.svm" required class="w-full bg-black/80 border border-[#FFD000]/40 rounded-xl px-3 py-2 text-xs text-gray-300 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#FFD000] file:text-black hover:file:bg-[#e5ba00] cursor-pointer">
+                    </div>
+
+                    <button type="submit" id="btn-upload-setup" class="w-full py-3.5 rounded-xl bg-[#FFD000] hover:bg-[#e5ba00] text-black font-hud font-black text-sm uppercase tracking-wider transition shadow-[0_0_25px_rgba(255,208,0,0.4)] cursor-pointer flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-upload"></i>
+                        <span>Publicar Setup en el Hub</span>
+                    </button>
+                    <p id="setup-upload-feedback" class="text-xs text-center text-gray-400"></p>
+                </form>
+            </div>
+
+            <!-- COLUMNA DERECHA: FILTROS Y LISTADO DE SETUPS PARA DESCARGAR Y VOTAR -->
+            <div class="lg:col-span-8 gold-panel rounded-3xl p-6 sm:p-7 border border-[#FFD000]/30 space-y-5">
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-white/10">
+                    <div>
+                        <h3 class="font-hud font-black text-xl text-white uppercase">SETUPS DISPONIBLES PARA DESCARGAR</h3>
+                        <p class="text-xs text-gray-400">Filtra por categoría, coche o circuito y valora las configuraciones de la comunidad</p>
+                    </div>
+                    <button onclick="fetchSetupsFromSupabase()" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-hud font-bold text-[#FFD000] transition cursor-pointer">
+                        <i class="fa-solid fa-rotate mr-1"></i> Actualizar Lista
+                    </button>
+                </div>
+
+                <!-- Barra de Filtros Interactivos (4 Filtros) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 bg-black/50 p-4 rounded-2xl border border-white/10">
+                    <div>
+                        <label class="text-[10px] font-hud uppercase text-[#FFD000] block mb-1">1. Categoría</label>
+                        <select id="filter-setup-categoria" onchange="updateFilterSetupCars(); renderSetupsList();" class="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FFD000]">
+                            <option value="ALL">Todas las Categorías (5)</option>
+                            <option value="HYPERCAR">HYPERCAR (LMH / LMDh)</option>
+                            <option value="LMP2">LMP2 (WEC / ELMS)</option>
+                            <option value="LMP3">LMP3 (ELMS)</option>
+                            <option value="LMGT3">LMGT3 (GT3)</option>
+                            <option value="GTE">GTE (Clásicos 2023)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-hud uppercase text-[#FFD000] block mb-1">2. Coche</label>
+                        <select id="filter-setup-coche" onchange="renderSetupsList()" class="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FFD000]">
+                            <option value="ALL">Todos los Coches</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-hud uppercase text-[#FFD000] block mb-1">3. Circuito</label>
+                        <select id="filter-setup-circuito" onchange="renderSetupsList()" class="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FFD000]">
+                            <option value="ALL">Todos los Circuitos</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-hud uppercase text-[#FFD000] block mb-1">4. Ordenar Por</label>
+                        <select id="filter-setup-orden" onchange="renderSetupsList()" class="w-full bg-black/80 border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#FFD000]">
+                            <option value="votos">⭐ Más Valorados Primero</option>
+                            <option value="recientes">🕒 Más Recientes Primero</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Contenedor donde se pintan las tarjetas de Setups -->
+                <div id="setups-cards-container" class="space-y-3 max-h-[600px] overflow-y-auto pr-1">
+                    <div class="text-center py-12 text-gray-400 text-sm">
+                        Cargando setups de la comunidad...
+                    </div>
                 </div>
             </div>
 
@@ -995,7 +1135,7 @@
                     <strong id="modal-round-format" class="text-white font-hud">Sprint 60 Minutos</strong>
                 </div>
                 <div class="flex justify-between">
-                    <span class="text-gray-400">Briefing & Práctica Libre:</span>
+                    <span class="text-gray-400">Briefing &amp; Práctica Libre:</span>
                     <strong class="text-white">Sábado / Domingo 18:30 CET</strong>
                 </div>
                 <div class="flex justify-between">
@@ -1020,13 +1160,11 @@
     </div>
 
     <!-- ========================================================================================= -->
-    <!-- VISTA 3: SIMULADOR FUTURISTA DE CARRERAS & SORTEOS EN VIVO (CON RADIO CORREGIDA AL 100%)  -->
+    <!-- VISTA 4: SIMULADOR FUTURISTA DE CARRERAS & SORTEOS EN VIVO                                -->
     <!-- ========================================================================================= -->
     <div id="view-giveaway" class="hidden max-w-[1600px] w-full mx-auto px-4 py-8">
         
-        <!-- Cabecera de Estado / Semáforo y Controles de Carrera -->
         <div class="gold-panel rounded-2xl p-4 mb-6 border border-[#FFD000]/30 flex flex-wrap items-center justify-between gap-4">
-            
             <div class="flex items-center gap-4">
                 <div class="bg-[#050507] px-4 py-2.5 rounded-xl border border-[#FFD000]/20 flex items-center gap-2.5">
                     <div id="light-1" class="gantry-light"></div>
@@ -1063,7 +1201,7 @@
                     <i class="fa-solid fa-gauge-high text-[#FFD000]"></i>
                     <select id="race-duration" class="bg-transparent text-sm font-bold text-white focus:outline-none cursor-pointer">
                         <option value="sprint" class="bg-[#0e0e12]">Sprint (~16s)</option>
-                        <option value="standard" selected class="bg-[#0e0e12]">GP Estándar (~28s)</option>
+                        <option value="standard" selected="" class="bg-[#0e0e12]">GP Estándar (~28s)</option>
                         <option value="endurance" class="bg-[#0e0e12]">Le Mans Emoción (~44s)</option>
                     </select>
                 </div>
@@ -1079,25 +1217,18 @@
             </div>
         </div>
 
-        <!-- Grid del Simulador de Sorteos -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            
-            <!-- Columna Izquierda: Añadir Nombres a Mano -->
             <div class="lg:col-span-3 gold-panel rounded-2xl p-5 flex flex-col gap-4">
                 <div class="flex items-center justify-between border-b border-white/10 pb-3">
                     <div>
                         <h3 class="font-hud font-bold text-base text-white">PARTICIPANTES SORTEO</h3>
                         <p class="text-xs text-gray-400">Añade a mano los nombres del chat</p>
                     </div>
-                    <span id="driver-count-badge" class="font-hud text-xs font-bold px-2.5 py-1 rounded-full bg-[#FFD000]/20 text-[#FFD000] border border-[#FFD000]/40">
-                        6 Pilotos
-                    </span>
+                    <span id="driver-count-badge" class="font-hud text-xs font-bold px-2.5 py-1 rounded-full bg-[#FFD000]/20 text-[#FFD000] border border-[#FFD000]/40">6 Pilotos</span>
                 </div>
 
                 <div class="flex gap-2">
-                    <input type="text" id="single-driver-input" placeholder="Nombre del seguidor..." 
-                        class="w-full bg-black/60 border border-white/15 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-[#FFD000]"
-                        onkeydown="if(event.key==='Enter') addSingleDriver()">
+                    <input type="text" id="single-driver-input" placeholder="Nombre del seguidor..." class="w-full bg-black/60 border border-white/15 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-[#FFD000]" onkeydown="if(event.key==='Enter') addSingleDriver()">
                     <button onclick="addSingleDriver()" class="px-4 py-2 rounded-xl bg-[#FFD000] hover:bg-[#e5ba00] text-black font-bold text-sm transition shrink-0 cursor-pointer">
                         <i class="fa-solid fa-plus"></i>
                     </button>
@@ -1110,8 +1241,7 @@
                             Cargar Demo
                         </button>
                     </div>
-                    <textarea id="bulk-drivers-input" rows="3" placeholder="Pega varios nombres aquí..." 
-                        class="w-full bg-black/70 border border-white/10 rounded-lg p-2 text-xs text-white focus:outline-none focus:border-[#FFD000] resize-none"></textarea>
+                    <textarea id="bulk-drivers-input" rows="3" placeholder="Pega varios nombres aquí..." class="w-full bg-black/70 border border-white/10 rounded-lg p-2 text-xs text-white focus:outline-none focus:border-[#FFD000] resize-none"></textarea>
                     <button onclick="addBulkDrivers()" class="mt-2 w-full py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white uppercase transition cursor-pointer">
                         Importar Lista a Pista
                     </button>
@@ -1137,12 +1267,11 @@
                 </div>
             </div>
 
-            <!-- Columna Derecha: Pista y Telemetría -->
             <div class="lg:col-span-9 flex flex-col gap-6">
                 <div id="track-wrapper" class="gold-panel rounded-2xl overflow-hidden border border-[#FFD000]/30">
                     <div class="bg-[#08080b] px-5 py-3 flex items-center justify-between border-b border-white/10">
                         <span class="font-hud text-sm font-bold text-[#FFD000] tracking-wide">CIRCUITO OFICIAL RASTA RACING // HYPERCAR SPRINT</span>
-                        <span class="text-xs text-gray-400"><i class="fa-solid fa-bolt text-[#FFD000] mr-1"></i>DRS & NITRO BOOST ACTIVO</span>
+                        <span class="text-xs text-gray-400"><i class="fa-solid fa-bolt text-[#FFD000] mr-1"></i>DRS &amp; NITRO BOOST ACTIVO</span>
                     </div>
                     <div class="curb-strip"></div>
                     <div class="race-track-container min-h-[320px] max-h-[540px] overflow-y-auto py-2 relative">
@@ -1152,12 +1281,11 @@
                     <div class="curb-strip"></div>
                 </div>
 
-                <!-- Radio de Dirección de Carrera (Corregida y Activa) + Torre Top 5 -->
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
                     <div class="md:col-span-7 gold-panel rounded-2xl p-4">
                         <div class="flex items-center justify-between mb-2 pb-2 border-b border-white/10">
                             <span class="font-hud text-xs font-bold uppercase text-[#FFD000] flex items-center gap-2">
-                                <i class="fa-solid fa-tower-broadcast animate-pulse"></i> RADIO DIRECCIÓN DE CARRERA & EVENTOS EN VIVO
+                                <i class="fa-solid fa-tower-broadcast animate-pulse"></i> RADIO DIRECCIÓN DE CARRERA &amp; EVENTOS EN VIVO
                             </span>
                             <span class="text-[10px] text-gray-400 uppercase">TELEMETRÍA ACTIVA</span>
                         </div>
@@ -1173,7 +1301,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -1239,7 +1366,7 @@
         <div class="max-w-[1600px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-2">
                 <span class="font-hud font-black text-[#FFD000]">RASTA RACING</span>
-                <span>— Hub Oficial, Simracing Setup, Campeonato LMU & Sorteos</span>
+                <span>— Hub Oficial, Simracing Setup, Campeonato LMU &amp; Sorteos</span>
             </div>
             <div class="flex flex-wrap items-center gap-4">
                 <a href="https://www.twitch.tv/rastaracing" target="_blank" class="hover:text-[#FFD000]">Twitch</a>
@@ -1253,12 +1380,23 @@
 
     <!-- ================= SCRIPTS UNIFICADOS ================= -->
     <script>
-        // NUEVO ENLACE SHEETDB ACTUALIZADO
+        // =========================================================================
+        // CONFIGURACIÓN DE SUPABASE (PEGA AQUÍ TUS 2 CLAVES DE SUPABASE)
+        // =========================================================================
+        const SUPABASE_URL = "TU_SUPABASE_URL_AQUI"; 
+        const SUPABASE_ANON_KEY = "TU_SUPABASE_ANON_KEY_AQUI";
+
+        let supabaseClient = null;
+        if (SUPABASE_URL.startsWith("http")) {
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        }
+
+        // ENLACE SHEETDB DEL CAMPEONATO
         const SHEETDB_API = "https://sheetdb.io/api/v1/le81cjhidevs4";
 
-        // 1. NAVEGACIÓN ENTRE LAS 3 VISTAS PRINCIPALES
+        // 1. NAVEGACIÓN ENTRE LAS 4 VISTAS PRINCIPALES
         function switchMainView(viewName) {
-            ['hub', 'championship', 'giveaway'].forEach(v => {
+            ['hub', 'championship', 'setups', 'giveaway'].forEach(v => {
                 document.getElementById(`view-${v}`).classList.add('hidden');
                 document.getElementById(`tab-btn-${v}`).classList.remove('active');
             });
@@ -1268,16 +1406,19 @@
 
             if (viewName === 'championship') {
                 fetchChampionshipDrivers();
+            } else if (viewName === 'setups') {
+                fetchSetupsFromSupabase();
             } else if (viewName === 'giveaway') {
                 renderAll();
             }
         }
 
-        // 2. CAMBIAR VÍDEO DEL REPRODUCTOR DE REVIEWS DE YOUTUBE
+        // 2. CAMBIAR VÍDEO DEL REPRODUCTOR DE REVIEWS DE YOUTUBE (CON FIX ANTI-ERROR)
         function changeYoutubeVideo(videoId, title) {
-            document.getElementById('main-youtube-iframe').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            const iframe = document.getElementById('main-youtube-iframe');
+            iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
             document.getElementById('current-video-title').textContent = title;
-            document.getElementById('current-video-link').href = `http://www.youtube.com/watch?v=${videoId}`;
+            document.getElementById('current-video-link').href = `https://www.youtube.com/watch?v=${videoId}`;
         }
 
         function copyReferralEmail() {
@@ -1288,49 +1429,352 @@
         }
 
         // =========================================================================
-        // 3. LÓGICA COMPLETA DEL CAMPEONATO LMU (GARAJE, CALENDARIO, CUPOS, SHEETDB)
+        // 3. BASE DE DATOS OFICIAL LE MANS ULTIMATE 2026 (18 CIRCUITOS + 5 CATEGORÍAS)
         // =========================================================================
+        const LMU_ALL_TRACKS = [
+            // Juego Base (7 Circuitos)
+            { group: "Juego Base WEC", name: "Algarve International Circuit (Portimão)", desc: "Variante GP con cambios de rasante" },
+            { group: "Juego Base WEC", name: "Autodromo Nazionale Monza", desc: "Templo de la velocidad + Curva Grande" },
+            { group: "Juego Base WEC", name: "Bahrain International Circuit (Sakhir)", desc: "Configuraciones Endurance, Outer y Paddock" },
+            { group: "Juego Base WEC", name: "Circuit de la Sarthe (Le Mans)", desc: "Trazado 24 Horas + Mulsanne sin chicanes" },
+            { group: "Juego Base WEC", name: "Circuit de Spa-Francorchamps", desc: "GP y trazado Endurance (hasta 62 coches)" },
+            { group: "Juego Base WEC", name: "Fuji Speedway", desc: "GP y variante clásica sin chicane" },
+            { group: "Juego Base WEC", name: "Sebring International Raceway", desc: "Full Circuit + School Circuit" },
+            // DLC WEC 2024 Season Pass (4 Circuitos)
+            { group: "DLC WEC 2024 Season Pass", name: "Autodromo Enzo e Dino Ferrari (Imola)", desc: "Trazado oficial WEC 6h de Imola" },
+            { group: "DLC WEC 2024 Season Pass", name: "Circuit of the Americas (COTA)", desc: "Lone Star Le Mans + National" },
+            { group: "DLC WEC 2024 Season Pass", name: "Autódromo José Carlos Pace (Interlagos)", desc: "Trazado oficial 6h de São Paulo" },
+            { group: "DLC WEC 2024 Season Pass", name: "Lusail International Circuit (Qatar)", desc: "Qatar 1812 km + Trazado Corto" },
+            // DLC ELMS Season Pass (3 Circuitos)
+            { group: "DLC ELMS Season Pass", name: "Silverstone Circuit", desc: "Cuna del motorsport británico (ELMS)" },
+            { group: "DLC ELMS Season Pass", name: "Circuit Paul Ricard (Le Castellet)", desc: "Múltiples configuraciones de trazado ELMS" },
+            { group: "DLC ELMS Season Pass", name: "Circuit de Barcelona-Catalunya", desc: "Configuración ELMS GP y variantes" },
+            // DLC US Track Pass 2026 (4 Circuitos publicados + Pack 3 pendiente)
+            { group: "DLC US Track Pass (2026)", name: "Daytona International Speedway", desc: "Road Course 24h & Oval (Julio 2026)" },
+            { group: "DLC US Track Pass (2026)", name: "WeatherTech Raceway Laguna Seca", desc: "Trazado con el mítico Sacacorchos (Julio 2026)" },
+            { group: "DLC US Track Pass (2026)", name: "Michelin Raceway Road Atlanta", desc: "Sede de Petit Le Mans (Septiembre 2026)" },
+            { group: "DLC US Track Pass (2026)", name: "Long Beach Street Circuit", desc: "Circuito urbano californiano (Septiembre 2026)" },
+            { group: "DLC US Track Pass (Dic 2026)", name: "US Track Pack 3 (Próximamente Dic 2026)", desc: "2 Circuitos adicionales US Track Pass" }
+        ];
+
         const LMU_ROUNDS = [
-            { r: 1, name: "Qatar 1812 km", track: "Lusail International Circuit", format: "Sprint 60m", code: "R1 - Qatar Lusail" },
-            { r: 2, name: "6h de Imola", track: "Autodromo Enzo e Dino Ferrari", format: "Endurance 90m", code: "R2 - Imola" },
+            { r: 1, name: "Qatar 1812 km", track: "Lusail International Circuit (Qatar)", format: "Sprint 60m", code: "R1 - Qatar Lusail" },
+            { r: 2, name: "6h de Imola", track: "Autodromo Enzo e Dino Ferrari (Imola)", format: "Endurance 90m", code: "R2 - Imola" },
             { r: 3, name: "6h de Spa", track: "Circuit de Spa-Francorchamps", format: "Endurance 90m", code: "R3 - Spa-Francorchamps" },
-            { r: 4, name: "2.4h de Le Mans", track: "Circuit de la Sarthe (Puntos x2)", format: "Especial 144m", code: "R4 - 2.4h Le Mans", special: true },
-            { r: 5, name: "6h de São Paulo", track: "Autódromo José Carlos Pace Interlagos", format: "Sprint 60m", code: "R5 - Interlagos" },
+            { r: 4, name: "2.4h de Le Mans", track: "Circuit de la Sarthe (Le Mans)", format: "Especial 144m", code: "R4 - 2.4h Le Mans", special: true },
+            { r: 5, name: "6h de São Paulo", track: "Autódromo José Carlos Pace (Interlagos)", format: "Sprint 60m", code: "R5 - Interlagos" },
             { r: 6, name: "Lone Star Le Mans", track: "Circuit of the Americas (COTA)", format: "Endurance 90m", code: "R6 - COTA Austin" },
-            { r: 7, name: "6h de Fuji", track: "Fuji International Speedway", format: "Sprint 60m", code: "R7 - Fuji Speedway" },
-            { r: 8, name: "8h de Bahrain", track: "Bahrain International Circuit", format: "Endurance 90m", code: "R8 - Bahrain" },
+            { r: 7, name: "6h de Fuji", track: "Fuji Speedway", format: "Sprint 60m", code: "R7 - Fuji Speedway" },
+            { r: 8, name: "8h de Bahrain", track: "Bahrain International Circuit (Sakhir)", format: "Endurance 90m", code: "R8 - Bahrain" },
             { r: 9, name: "6h de Monza", track: "Autodromo Nazionale Monza", format: "Sprint 60m", code: "R9 - Monza" },
-            { r: 10, name: "Gran Final Sebring", track: "Sebring International Raceway (x2)", format: "Final 120m", code: "R10 - Sebring Final", special: true }
+            { r: 10, name: "Gran Final Sebring", track: "Sebring International Raceway", format: "Final 120m", code: "R10 - Sebring Final", special: true }
         ];
 
         const LMU_GARAGE_DATA = {
             HYPERCAR: [
-                { name: "Ferrari 499P", engine: "V6 3.0L Twin-Turbo Hybrid", power: "680 CV + ERS", drive: "AWD Híbrido" },
-                { name: "Porsche 963", engine: "V8 4.6L Twin-Turbo LMDh", power: "680 CV", drive: "RWD Hybrid" },
-                { name: "Toyota GR010 Hybrid", engine: "V6 3.5L Twin-Turbo LMH", power: "680 CV + ERS", drive: "AWD Híbrido" },
-                { name: "Cadillac V-Series.R", engine: "V8 5.5L Atmosférico LMDh", power: "680 CV", drive: "RWD Hybrid" },
-                { name: "BMW M Hybrid V8", engine: "V8 4.0L Bi-Turbo LMDh", power: "680 CV", drive: "RWD Hybrid" },
-                { name: "Alpine A424", engine: "V6 3.4L Turbo Mecachrome", power: "675 CV", drive: "RWD Hybrid" },
-                { name: "Lamborghini SC63", engine: "V8 3.8L Twin-Turbo LMDh", power: "680 CV", drive: "RWD Hybrid" },
-                { name: "Peugeot 9X8", engine: "V6 2.6L Twin-Turbo LMH", power: "680 CV + ERS", drive: "AWD Híbrido" }
+                { name: "Alpine A424", engine: "V6 3.4L Turbo Mecachrome", power: "675 CV", drive: "LMDh RWD Hybrid" },
+                { name: "Aston Martin Valkyrie AMR-LMH", engine: "V12 6.5L Cosworth Atmosférico", power: "680 CV", drive: "LMH RWD" },
+                { name: "BMW M Hybrid V8", engine: "V8 4.0L Bi-Turbo", power: "680 CV", drive: "LMDh RWD Hybrid" },
+                { name: "Cadillac V-Series.R", engine: "V8 5.5L Atmosférico", power: "680 CV", drive: "LMDh RWD Hybrid" },
+                { name: "Ferrari 499P", engine: "V6 3.0L Twin-Turbo Hybrid", power: "680 CV + ERS", drive: "LMH AWD Híbrido" },
+                { name: "Genesis GMR-001 Hypercar", engine: "V8 Twin-Turbo Hybrid", power: "680 CV", drive: "LMDh RWD Hybrid" },
+                { name: "Glickenhaus SCG 007 LMH", engine: "V8 3.5L Pipo Twin-Turbo", power: "680 CV", drive: "LMH RWD" },
+                { name: "Isotta Fraschini Tipo 6 LMH-C", engine: "V6 3.0L Turbo Hybrid", power: "680 CV + ERS", drive: "LMH AWD Híbrido" },
+                { name: "Lamborghini SC63", engine: "V8 3.8L Twin-Turbo", power: "680 CV", drive: "LMDh RWD Hybrid" },
+                { name: "Peugeot 9X8 (2023 Wingless)", engine: "V6 2.6L Twin-Turbo", power: "680 CV + ERS", drive: "LMH AWD Híbrido" },
+                { name: "Peugeot 9X8 2024 (Evo Wing)", engine: "V6 2.6L Twin-Turbo Evo", power: "680 CV + ERS", drive: "LMH AWD Híbrido" },
+                { name: "Porsche 963", engine: "V8 4.6L Twin-Turbo", power: "680 CV", drive: "LMDh RWD Hybrid" },
+                { name: "Toyota GR010 Hybrid", engine: "V6 3.5L Twin-Turbo", power: "680 CV + ERS", drive: "LMH AWD Híbrido" },
+                { name: "Vanwall Vandervell 680", engine: "V8 4.5L Gibson Atmosférico", power: "680 CV", drive: "LMH RWD" },
+                { name: "Acura ARX-06", engine: "V6 2.4L Twin-Turbo", power: "680 CV", drive: "LMDh RWD Hybrid" }
+            ],
+            LMP2: [
+                { name: "ORECA 07 Gibson (WEC Spec)", engine: "V8 4.2L Gibson GK428", power: "536 CV", drive: "RWD Prototipo WEC" },
+                { name: "ORECA 07 Gibson (ELMS Unrestricted)", engine: "V8 4.2L Gibson Full Power", power: "600 CV", drive: "RWD Prototipo ELMS" }
+            ],
+            LMP3: [
+                { name: "Ligier JS P320", engine: "V8 5.6L Nissan VK56", power: "455 CV", drive: "RWD LMP3" },
+                { name: "Duqueine D08", engine: "V8 5.6L Nissan VK56", power: "455 CV", drive: "RWD LMP3" },
+                { name: "Ginetta G61-LT-P3", engine: "V8 5.6L Nissan VK56", power: "455 CV", drive: "RWD LMP3" },
+                { name: "ADESS-03 Evo", engine: "V8 5.6L Nissan VK56", power: "455 CV", drive: "RWD LMP3" }
             ],
             LMGT3: [
-                { name: "Porsche 911 GT3 R", engine: "Bóxer 6 Cilindros 4.2L", power: "565 CV", drive: "RWD GT3" },
-                { name: "Ferrari 296 LMGT3", engine: "V6 3.0L Bi-Turbo 120°", power: "600 CV", drive: "RWD GT3" },
-                { name: "BMW M4 LMGT3", engine: "L6 3.0L M TwinPower Turbo", power: "590 CV", drive: "RWD GT3" },
-                { name: "Aston Martin Vantage GT3", engine: "V8 4.0L Twin-Turbo", power: "545 CV", drive: "RWD GT3" },
-                { name: "McLaren 720S LMGT3 Evo", engine: "V8 4.0L Twin-Turbo M840T", power: "550 CV", drive: "RWD GT3" },
-                { name: "Corvette Z06 LMGT3.R", engine: "V8 5.5L DOHC Flat-Plane", power: "560 CV", drive: "RWD GT3" },
-                { name: "Ford Mustang LMGT3", engine: "V8 5.4L Coyote Atmosférico", power: "560 CV", drive: "RWD GT3" },
-                { name: "Lamborghini Huracán LMGT3 Evo2", engine: "V10 5.2L Atmosférico", power: "580 CV", drive: "RWD GT3" }
+                { name: "Aston Martin Vantage AMR LMGT3", engine: "V8 4.0L Twin-Turbo", power: "545 CV", drive: "RWD LMGT3" },
+                { name: "BMW M4 LMGT3", engine: "L6 3.0L M TwinPower Turbo", power: "590 CV", drive: "RWD LMGT3" },
+                { name: "Chevrolet Corvette Z06 LMGT3.R", engine: "V8 5.5L DOHC Flat-Plane", power: "560 CV", drive: "RWD LMGT3" },
+                { name: "Ferrari 296 LMGT3", engine: "V6 3.0L Bi-Turbo 120°", power: "600 CV", drive: "RWD LMGT3" },
+                { name: "Ford Mustang LMGT3", engine: "V8 5.4L Coyote Atmosférico", power: "560 CV", drive: "RWD LMGT3" },
+                { name: "Lamborghini Huracán LMGT3 Evo2", engine: "V10 5.2L Atmosférico", power: "580 CV", drive: "RWD LMGT3" },
+                { name: "Lexus RC F LMGT3", engine: "V8 5.4L 2UR-GSE", power: "550 CV", drive: "RWD LMGT3" },
+                { name: "McLaren 720S LMGT3 Evo", engine: "V8 4.0L Twin-Turbo M840T", power: "550 CV", drive: "RWD LMGT3" },
+                { name: "Mercedes-AMG LMGT3", engine: "V8 6.2L M159 Atmosférico", power: "550 CV", drive: "RWD LMGT3" },
+                { name: "Porsche 911 GT3 R (992)", engine: "Bóxer 6 Cilindros 4.2L", power: "565 CV", drive: "RWD LMGT3" }
+            ],
+            GTE: [
+                { name: "Aston Martin Vantage AMR GTE", engine: "V8 4.0L Twin-Turbo GTE", power: "515 CV", drive: "RWD GTE 2023" },
+                { name: "Chevrolet Corvette C8.R GTE", engine: "V8 5.5L Flat-Plane GTE", power: "515 CV", drive: "RWD GTE 2023" },
+                { name: "Ferrari 488 GTE Evo", engine: "V8 3.9L Twin-Turbo GTE", power: "515 CV", drive: "RWD GTE 2023" },
+                { name: "Porsche 911 RSR-19", engine: "Bóxer 6 Cilindros 4.2L Central", power: "515 CV", drive: "RWD GTE 2023" }
             ]
         };
 
+        function getCategoryBadgeStyle(cat) {
+            switch (cat) {
+                case 'HYPERCAR': return 'bg-red-600/30 text-red-300 border border-red-500/40';
+                case 'LMP2': return 'bg-blue-600/30 text-blue-300 border border-blue-500/40';
+                case 'LMP3': return 'bg-purple-600/30 text-purple-300 border border-purple-500/40';
+                case 'GTE': return 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/40';
+                default: return 'bg-[#FFD000]/20 text-[#FFD000] border border-[#FFD000]/40';
+            }
+        }
+
+        function detectCategoryByCarName(carName) {
+            for (const [cat, list] of Object.entries(LMU_GARAGE_DATA)) {
+                if (list.some(c => c.name === carName)) return cat;
+            }
+            return 'LMGT3';
+        }
+
+        function buildTrackOptgroupsHTML() {
+            const groups = {};
+            LMU_ALL_TRACKS.forEach(t => {
+                if (!groups[t.group]) groups[t.group] = [];
+                groups[t.group].push(t);
+            });
+            return Object.entries(groups).map(([gName, tracks]) => `
+                <optgroup label="${gName}" class="bg-[#0e0e12] text-[#FFD000]">
+                    ${tracks.map(t => `<option value="${t.name}" class="text-white">${t.name}</option>`).join('')}
+                </optgroup>
+            `).join('');
+        }
+
+        // =========================================================================
+        // 4. LÓGICA DEL HUB DE SETUPS LMU (SUPABASE)
+        // =========================================================================
+        let allSetupsList = [];
+
+        function initSetupsUI() {
+            populateSetupCarSelect();
+
+            const circuitSelect = document.getElementById('setup-circuito');
+            const filterCircuit = document.getElementById('filter-setup-circuito');
+            const groupedTracksHTML = buildTrackOptgroupsHTML();
+
+            circuitSelect.innerHTML = groupedTracksHTML;
+            filterCircuit.innerHTML = `<option value="ALL">Todos los Circuitos (18)</option>` + groupedTracksHTML;
+
+            updateFilterSetupCars();
+        }
+
+        function populateSetupCarSelect() {
+            const cat = document.getElementById('setup-categoria').value;
+            const carSelect = document.getElementById('setup-coche');
+            carSelect.innerHTML = (LMU_GARAGE_DATA[cat] || []).map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+        }
+
+        function updateFilterSetupCars() {
+            const catFilter = document.getElementById('filter-setup-categoria').value;
+            const filterCar = document.getElementById('filter-setup-coche');
+
+            if (catFilter === 'ALL') {
+                const allGroupsHTML = Object.entries(LMU_GARAGE_DATA).map(([cat, cars]) => `
+                    <optgroup label="Categoría ${cat}" class="bg-[#0e0e12] text-[#FFD000]">
+                        ${cars.map(c => `<option value="${c.name}" class="text-white">${c.name}</option>`).join('')}
+                    </optgroup>
+                `).join('');
+                filterCar.innerHTML = `<option value="ALL">Todos los Coches (35)</option>` + allGroupsHTML;
+            } else {
+                const cars = LMU_GARAGE_DATA[catFilter] || [];
+                filterCar.innerHTML = `<option value="ALL">Todos los ${catFilter} (${cars.length})</option>` +
+                    cars.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+            }
+        }
+
+        async function fetchSetupsFromSupabase() {
+            const container = document.getElementById('setups-cards-container');
+            if (!supabaseClient) {
+                container.innerHTML = `
+                    <div class="p-6 rounded-2xl bg-black/60 border border-[#FFD000]/40 text-center space-y-2">
+                        <i class="fa-solid fa-key text-2xl text-[#FFD000]"></i>
+                        <h4 class="font-hud font-bold text-white">Faltan las claves de Supabase</h4>
+                        <p class="text-xs text-gray-400">Edita las constantes <code class="text-[#FFD000]">SUPABASE_URL</code> y <code class="text-[#FFD000]">SUPABASE_ANON_KEY</code> al final del archivo HTML para activar la base de datos en vivo.</p>
+                    </div>`;
+                return;
+            }
+
+            const { data, error } = await supabaseClient
+                .from('setups')
+                .select('*')
+                .order('votos', { ascending: false });
+
+            if (error) {
+                console.error("Error cargando setups:", error);
+                container.innerHTML = `<div class="text-center py-8 text-red-400 text-xs">Error al conectar con la tabla 'setups' de Supabase: ${error.message}</div>`;
+                return;
+            }
+
+            allSetupsList = data || [];
+            document.getElementById('stat-total-setups').textContent = allSetupsList.length;
+            const totalVotes = allSetupsList.reduce((acc, s) => acc + (s.votos || 0), 0);
+            document.getElementById('stat-total-votes').textContent = totalVotes;
+
+            renderSetupsList();
+        }
+
+        function renderSetupsList() {
+            const container = document.getElementById('setups-cards-container');
+            const catFilter = document.getElementById('filter-setup-categoria').value;
+            const carFilter = document.getElementById('filter-setup-coche').value;
+            const trackFilter = document.getElementById('filter-setup-circuito').value;
+            const sortMode = document.getElementById('filter-setup-orden').value;
+
+            let filtered = allSetupsList.filter(s => {
+                const setupCat = s.categoria || detectCategoryByCarName(s.coche);
+                const matchCat = catFilter === 'ALL' || setupCat === catFilter;
+                const matchCar = carFilter === 'ALL' || s.coche === carFilter;
+                const matchTrack = trackFilter === 'ALL' || s.circuito === trackFilter;
+                return matchCat && matchCar && matchTrack;
+            });
+
+            if (sortMode === 'votos') {
+                filtered.sort((a, b) => (b.votos || 0) - (a.votos || 0));
+            } else {
+                filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 bg-black/40 rounded-2xl border border-white/5 text-gray-400 text-sm">
+                        No hay setups publicados para este filtro todavía. ¡Sé el primero en subir el tuyo!
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(setup => {
+                const cat = setup.categoria || detectCategoryByCarName(setup.coche);
+                const badgeStyle = getCategoryBadgeStyle(cat);
+                const votedIds = JSON.parse(localStorage.getItem('rasta_voted_setups') || '[]');
+                const alreadyVoted = votedIds.includes(setup.id);
+
+                return `
+                <div class="bg-black/70 hover:bg-black/90 border border-white/10 hover:border-[#FFD000]/40 rounded-2xl p-4 transition flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="px-2 py-0.5 rounded text-[10px] font-hud font-bold ${badgeStyle}">
+                                ${cat}
+                            </span>
+                            <h4 class="font-hud font-bold text-base text-white">${setup.coche}</h4>
+                            <span class="text-xs text-[#FFD000] font-semibold">• ${setup.circuito}</span>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-4 text-xs text-gray-400 pt-1">
+                            <span><i class="fa-solid fa-user-astronaut text-[#FFD000] mr-1"></i>Piloto: <strong class="text-gray-200">${setup.piloto}</strong></span>
+                            ${setup.tiempo_vuelta ? `<span><i class="fa-solid fa-stopwatch text-[#FFD000] mr-1"></i>Tiempo: <strong class="text-[#FFF4B8] font-mono">${setup.tiempo_vuelta}</strong></span>` : ''}
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2.5 self-end sm:self-center shrink-0">
+                        <button onclick="voteSetup(${setup.id}, ${setup.votos || 0})" ${alreadyVoted ? 'disabled' : ''} class="px-3.5 py-2 rounded-xl font-hud font-bold text-xs flex items-center gap-1.5 transition cursor-pointer ${alreadyVoted ? 'bg-[#FFD000]/30 text-[#FFD000] border border-[#FFD000]' : 'bg-white/10 hover:bg-[#FFD000]/20 text-white border border-white/15'}">
+                            <i class="fa-solid fa-thumbs-up text-[#FFD000]"></i>
+                            <span>${setup.votos || 0}</span>
+                        </button>
+
+                        <a href="${setup.archivo_url}" download target="_blank" class="px-4 py-2 rounded-xl bg-[#FFD000] hover:bg-[#e5ba00] text-black font-hud font-black text-xs uppercase tracking-wider flex items-center gap-1.5 transition shadow-[0_0_15px_rgba(255,208,0,0.3)]">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Descargar</span>
+                        </a>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        async function uploadSetupToSupabase(e) {
+            e.preventDefault();
+            const feedback = document.getElementById('setup-upload-feedback');
+            const btn = document.getElementById('btn-upload-setup');
+
+            if (!supabaseClient) {
+                feedback.textContent = "⚠ Configura primero tus claves SUPABASE_URL y SUPABASE_ANON_KEY en el código.";
+                feedback.className = "text-xs text-center text-red-400 font-bold mt-2";
+                return;
+            }
+
+            const fileInput = document.getElementById('setup-archivo');
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> <span>Subiendo Setup...</span>`;
+            feedback.textContent = "";
+
+            try {
+                const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+                const filePath = `${Date.now()}_${safeName}`;
+
+                const { error: storageError } = await supabaseClient.storage
+                    .from('setups_lmu')
+                    .upload(filePath, file);
+
+                if (storageError) throw storageError;
+
+                const { data: publicUrlData } = supabaseClient.storage
+                    .from('setups_lmu')
+                    .getPublicUrl(filePath);
+
+                const nuevoSetup = {
+                    piloto: document.getElementById('setup-piloto').value.trim(),
+                    coche: document.getElementById('setup-coche').value,
+                    circuito: document.getElementById('setup-circuito').value,
+                    tiempo_vuelta: document.getElementById('setup-tiempo').value.trim() || null,
+                    votos: 0,
+                    archivo_url: publicUrlData.publicUrl
+                };
+
+                const { error: dbError } = await supabaseClient
+                    .from('setups')
+                    .insert([nuevoSetup]);
+
+                if (dbError) throw dbError;
+
+                confetti({ particleCount: 90, spread: 70, origin: { y: 0.6 }, colors: ['#FFD000', '#E59800', '#FFF4B8'] });
+                feedback.textContent = "🏁 ¡Setup publicado correctamente en el Hub!";
+                feedback.className = "text-xs text-center text-[#FFD000] font-bold mt-2";
+                document.getElementById('form-upload-setup').reset();
+                populateSetupCarSelect();
+                fetchSetupsFromSupabase();
+            } catch (err) {
+                console.error("Error subiendo setup:", err);
+                feedback.textContent = "Error al subir: " + (err.message || "Revisa las políticas RLS de Supabase.");
+                feedback.className = "text-xs text-center text-red-400 font-bold mt-2";
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<i class="fa-solid fa-upload"></i> <span>Publicar Setup en el Hub</span>`;
+            }
+        }
+
+        async function voteSetup(setupId, currentVotes) {
+            if (!supabaseClient) return;
+            const votedIds = JSON.parse(localStorage.getItem('rasta_voted_setups') || '[]');
+            if (votedIds.includes(setupId)) return;
+
+            const { error } = await supabaseClient
+                .from('setups')
+                .update({ votos: currentVotes + 1 })
+                .eq('id', setupId);
+
+            if (!error) {
+                votedIds.push(setupId);
+                localStorage.setItem('rasta_voted_setups', JSON.stringify(votedIds));
+                fetchSetupsFromSupabase();
+            }
+        }
+
+        // =========================================================================
+        // 5. LÓGICA DEL CAMPEONATO LMU (5 CATEGORÍAS, CALENDARIO, CUPOS, SHEETDB)
+        // =========================================================================
         let allRegisteredDrivers = [];
         let currentEntryFilter = 'ALL';
 
         function initChampionshipUI() {
-            // Renderizar las 10 fechas interactivas
             const grid = document.getElementById('calendar-grid');
             grid.innerHTML = LMU_ROUNDS.map((round, idx) => `
                 <div onclick="openRoundModal(${idx})" class="gold-panel rounded-2xl p-4 border ${round.special ? 'border-[#FFD000]' : 'border-white/10'} hover:border-[#FFD000] cursor-pointer group flex flex-col justify-between">
@@ -1349,28 +1793,39 @@
                 </div>
             `).join('');
 
+            // Llenar selector de Rondas y todos los Circuitos DLC
+            const regRonda = document.getElementById('reg-ronda');
+            regRonda.innerHTML = `
+                <option value="Todas (R1-R10)">Temporada Completa (10 Fechas WEC)</option>
+                <optgroup label="Calendario Oficial 10 Fechas" class="bg-[#0e0e12] text-[#FFD000]">
+                    ${LMU_ROUNDS.map(r => `<option value="${r.code}" class="text-white">${r.code} (${r.track})</option>`).join('')}
+                </optgroup>
+                ${buildTrackOptgroupsHTML()}
+            `;
+
             renderGarageCars('HYPERCAR');
             updateCarOptions();
             updateLiveNumberplate();
         }
 
         function renderGarageCars(category) {
-            const btnHyper = document.getElementById('btn-garage-hyper');
-            const btnGt3 = document.getElementById('btn-garage-gt3');
-            if (category === 'HYPERCAR') {
-                btnHyper.className = "px-5 py-2.5 rounded-xl font-hud font-black text-xs uppercase tracking-wider bg-[#FFD000] text-black transition cursor-pointer";
-                btnGt3.className = "px-5 py-2.5 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer";
-            } else {
-                btnGt3.className = "px-5 py-2.5 rounded-xl font-hud font-black text-xs uppercase tracking-wider bg-[#FFD000] text-black transition cursor-pointer";
-                btnHyper.className = "px-5 py-2.5 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer";
-            }
+            ['HYPERCAR', 'LMP2', 'LMP3', 'LMGT3', 'GTE'].forEach(cat => {
+                const btn = document.getElementById(`btn-garage-${cat}`);
+                if (!btn) return;
+                if (cat === category) {
+                    btn.className = "px-4 py-2 rounded-xl font-hud font-black text-xs uppercase tracking-wider bg-[#FFD000] text-black transition cursor-pointer";
+                } else {
+                    btn.className = "px-4 py-2 rounded-xl font-hud font-bold text-xs uppercase tracking-wider bg-white/10 text-white hover:bg-white/20 transition cursor-pointer";
+                }
+            });
 
+            const badgeStyle = getCategoryBadgeStyle(category);
             const grid = document.getElementById('garage-cars-grid');
-            grid.innerHTML = LMU_GARAGE_DATA[category].map(car => `
+            grid.innerHTML = (LMU_GARAGE_DATA[category] || []).map(car => `
                 <div class="gold-panel rounded-2xl p-4 border border-white/10 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-2">
-                            <span class="px-2 py-0.5 rounded text-[10px] font-hud font-bold ${category === 'HYPERCAR' ? 'bg-red-600/30 text-red-300 border border-red-500/40' : 'bg-[#FFD000]/20 text-[#FFD000] border border-[#FFD000]/40'}">${category}</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-hud font-bold ${badgeStyle}">${category}</span>
                             <span class="text-xs font-hud text-gray-400">${car.power}</span>
                         </div>
                         <h4 class="font-hud font-bold text-base text-white mb-1">${car.name}</h4>
@@ -1419,7 +1874,7 @@
         function updateCarOptions() {
             const clase = document.getElementById('reg-clase').value;
             const select = document.getElementById('reg-coche');
-            select.innerHTML = LMU_GARAGE_DATA[clase].map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+            select.innerHTML = (LMU_GARAGE_DATA[clase] || []).map(c => `<option value="${c.name}">${c.name}</option>`).join('');
         }
 
         function updateLiveNumberplate() {
@@ -1433,11 +1888,13 @@
             document.getElementById('plate-car-preview').textContent = coche;
             const badge = document.getElementById('plate-class-badge');
             badge.textContent = clase;
-            badge.className = clase === 'HYPERCAR'
-                ? 'px-2 py-0.5 rounded bg-red-600 text-white font-hud text-[10px] font-bold'
-                : 'px-2 py-0.5 rounded bg-[#FFD000] text-black font-hud text-[10px] font-bold';
 
-            // Comprobar si el dorsal ya está ocupado en SheetDB
+            if (clase === 'HYPERCAR') badge.className = 'px-2 py-0.5 rounded bg-red-600 text-white font-hud text-[10px] font-bold';
+            else if (clase === 'LMP2') badge.className = 'px-2 py-0.5 rounded bg-blue-600 text-white font-hud text-[10px] font-bold';
+            else if (clase === 'LMP3') badge.className = 'px-2 py-0.5 rounded bg-purple-600 text-white font-hud text-[10px] font-bold';
+            else if (clase === 'GTE') badge.className = 'px-2 py-0.5 rounded bg-emerald-600 text-white font-hud text-[10px] font-bold';
+            else badge.className = 'px-2 py-0.5 rounded bg-[#FFD000] text-black font-hud text-[10px] font-bold';
+
             const msg = document.getElementById('dorsal-status-msg');
             const taken = allRegisteredDrivers.some(d => String(d.dorsal).trim() === String(dorsal));
             if (taken) {
@@ -1451,11 +1908,12 @@
 
         function setEntryFilter(filterVal) {
             currentEntryFilter = filterVal;
-            ['ALL', 'HYPERCAR', 'LMGT3'].forEach(f => {
+            ['ALL', 'HYPERCAR', 'LMP2', 'LMP3', 'LMGT3', 'GTE'].forEach(f => {
                 const btn = document.getElementById(`filter-btn-${f}`);
+                if (!btn) return;
                 btn.className = (f === filterVal)
-                    ? "px-3 py-1.5 rounded-lg font-hud text-xs font-bold bg-[#FFD000] text-black cursor-pointer"
-                    : "px-3 py-1.5 rounded-lg font-hud text-xs font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer";
+                    ? "px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-[#FFD000] text-black cursor-pointer"
+                    : "px-2.5 py-1.5 rounded-lg font-hud text-[11px] font-bold bg-white/10 text-gray-300 hover:text-white cursor-pointer";
             });
             renderEntryListTable();
         }
@@ -1478,7 +1936,10 @@
                 return;
             }
 
-            tbody.innerHTML = filtered.map(row => `
+            tbody.innerHTML = filtered.map(row => {
+                const cat = (row.clase || 'LMGT3').toUpperCase();
+                const badgeStyle = getCategoryBadgeStyle(cat);
+                return `
                 <tr class="hover:bg-white/5 transition">
                     <td class="py-2.5 px-2 font-hud font-black text-base text-[#FFD000]">#${row.dorsal || '-'}</td>
                     <td class="py-2.5 px-2">
@@ -1486,12 +1947,12 @@
                         <span class="text-xs text-gray-400">${row.twitch || ''}</span>
                     </td>
                     <td class="py-2.5 px-2">
-                        <span class="px-2 py-0.5 rounded text-[10px] font-hud font-bold ${row.clase === 'HYPERCAR' ? 'bg-red-600/30 text-red-300' : 'bg-[#FFD000]/20 text-[#FFD000]'}">${row.clase || '-'}</span>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-hud font-bold ${badgeStyle}">${cat}</span>
                     </td>
                     <td class="py-2.5 px-2 text-gray-200 font-semibold">${row.coche || '-'}</td>
                     <td class="py-2.5 px-2 text-xs text-gray-400">${row.modalidad || ''} <span class="text-[#FFD000] block">${row.ronda || ''}</span></td>
-                </tr>
-            `).join('');
+                </tr>`;
+            }).join('');
         }
 
         async function fetchChampionshipDrivers() {
@@ -1501,16 +1962,18 @@
                 if (Array.isArray(data)) {
                     allRegisteredDrivers = data;
 
-                    // Actualizar contadores y barras de Hypercar y LMGT3
-                    const hyperCount = data.filter(d => (d.clase || '').toUpperCase() === 'HYPERCAR').length;
-                    const gt3Count = data.filter(d => (d.clase || '').toUpperCase() === 'LMGT3').length;
+                    const protoClasses = ['HYPERCAR', 'LMP2', 'LMP3'];
+                    const gtClasses = ['LMGT3', 'GTE'];
+
+                    const protoCount = data.filter(d => protoClasses.includes((d.clase || '').toUpperCase())).length;
+                    const gtCount = data.filter(d => gtClasses.includes((d.clase || '').toUpperCase())).length;
 
                     document.getElementById('champ-total-drivers').textContent = `${data.length} / 38`;
-                    document.getElementById('slots-hypercar-text').textContent = `${hyperCount} / 18 Plazas`;
-                    document.getElementById('slots-hypercar-bar').style.width = `${Math.min(100, (hyperCount / 18) * 100)}%`;
+                    document.getElementById('slots-hypercar-text').textContent = `${protoCount} / 18 Plazas`;
+                    document.getElementById('slots-hypercar-bar').style.width = `${Math.min(100, (protoCount / 18) * 100)}%`;
 
-                    document.getElementById('slots-gt3-text').textContent = `${gt3Count} / 20 Plazas`;
-                    document.getElementById('slots-gt3-bar').style.width = `${Math.min(100, (gt3Count / 20) * 100)}%`;
+                    document.getElementById('slots-gt3-text').textContent = `${gtCount} / 20 Plazas`;
+                    document.getElementById('slots-gt3-bar').style.width = `${Math.min(100, (gtCount / 20) * 100)}%`;
 
                     renderEntryListTable();
                     updateLiveNumberplate();
@@ -1566,7 +2029,7 @@
         }
 
         // =========================================================================
-        // 4. LÓGICA DEL SIMULADOR DE SORTEOS CON RADIO DIRECCIÓN DE CARRERA ACTIVA
+        // 6. LÓGICA DEL SIMULADOR DE SORTEOS CON RADIO DIRECCIÓN DE CARRERA ACTIVA
         // =========================================================================
         const CAR_COLORS = [
             { main: '#FFD000', accent: '#594800' },
@@ -1592,7 +2055,6 @@
         let finishedOrder = [];
         let lastLeaderName = '';
 
-        // FUNCIÓN DE RADIO DIRECCIÓN DE CARRERA (RESTAURADA Y CONECTADA A TODOS LOS EVENTOS)
         function addCommentary(htmlText) {
             const box = document.getElementById('race-commentary');
             if (!box) return;
@@ -1858,7 +2320,7 @@
             document.getElementById('top-speed-hud').textContent = '0 KM/H';
             document.getElementById('race-status-text').textContent = 'PARRILLA ABIERTA - ESPERANDO PILOTOS';
             for (let i = 1; i <= 5; i++) document.getElementById(`light-${i}`).classList.remove('red-on', 'green-on');
-            drivers.forEach(d => { d.progress = 0; d.finished = false; d.finishTime = null; d.boosting = false; });
+            drivers.forEach(d => { d.progress = 0; d.finished = false; d.finishTime: null, boosting: false });
             if (reRender) renderAll();
         }
 
@@ -1876,6 +2338,7 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             initChampionshipUI();
+            initSetupsUI();
             renderAll();
         });
     </script>
